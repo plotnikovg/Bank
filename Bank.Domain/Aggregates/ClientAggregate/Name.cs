@@ -1,6 +1,8 @@
+using Bank.Domain.Common;
+
 namespace Bank.Domain.Aggregates.ClientAggregate;
 
-public class Name
+public class Name : ValueObject
 {
     public string FirstName { get; private set; }
     public string? SecondName { get; private set; }
@@ -21,7 +23,7 @@ public class Name
         Patronymic = patronymic;
     }
 
-    protected IEnumerable<object> GetFullName()
+    protected override IEnumerable<object> GetEqualityComponents()
     {
         yield return FirstName;
         if (SecondName != null) yield return SecondName;

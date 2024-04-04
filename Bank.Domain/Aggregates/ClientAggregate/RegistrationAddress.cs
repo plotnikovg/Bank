@@ -1,8 +1,9 @@
 using System.Runtime.InteropServices.ComTypes;
+using Bank.Domain.Common;
 
 namespace Bank.Domain.Aggregates.ClientAggregate;
 
-public class RegistrationAddress
+public class RegistrationAddress : ValueObject
 {
     public DateOnly RegistrationDate { get; private set; }
     public string Region { get; private set; }
@@ -29,7 +30,7 @@ public class RegistrationAddress
         BuildingNumber = buildingNumber;
     }
 
-    public IEnumerable<object> GetFullRegistrationAddress()
+    protected override IEnumerable<object> GetEqualityComponents()
     {
         yield return RegistrationDate;
         yield return Region;
