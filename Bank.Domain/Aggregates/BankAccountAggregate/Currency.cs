@@ -10,7 +10,7 @@ public class Currency : ValueObject
     public static Currency USD => new("USD");
     public static Currency EUR => new("EUR");
 
-    private Currency(string code)
+    public Currency(string code)
     {
         if (code is null) throw new ArgumentNullException(nameof(code), "Code can't be null");
         _code = code.ToUpperInvariant();
