@@ -6,6 +6,7 @@ public class BankAccount : BaseEntity, IAggregateRoot
 {
     public Money Balance { get; private set; }
     public decimal WithdrawalLimit { get; private set; } //Лимит на снятие средств
+    public bool IsLocked { get; private set; }
     //BankCards items can be added only through AddBankCard method
     private readonly List<BankCard> _bankCards;
     public IReadOnlyCollection<BankCard> BankCards => _bankCards.AsReadOnly(); //Карты
