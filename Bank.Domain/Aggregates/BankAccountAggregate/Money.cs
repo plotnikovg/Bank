@@ -23,7 +23,8 @@ public class Money : ValueObject
         yield return Currency;
         yield return Amount;
     }
-
+    public void Increase(decimal amount) => Amount += amount;
+    public void Decrease(decimal amount) => Amount -= amount;
     public static Money operator +(Money left, Money right)
     {
         if (left.Currency != right.Currency) throw new InvalidOperationException();
