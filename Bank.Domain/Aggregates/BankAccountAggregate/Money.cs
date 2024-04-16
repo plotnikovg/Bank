@@ -23,4 +23,15 @@ public class Money : ValueObject
         yield return Currency;
         yield return Amount;
     }
+
+    public static Money operator +(Money left, Money right)
+    {
+        if (left.Currency != right.Currency) throw new InvalidOperationException();
+        return new Money(left.Currency, left.Amount + right.Amount);
+    }
+    public static Money operator -(Money left, Money right)
+    {
+        if (left.Currency != right.Currency) throw new InvalidOperationException();
+        return new Money(left.Currency, left.Amount - right.Amount);
+    }
 }
