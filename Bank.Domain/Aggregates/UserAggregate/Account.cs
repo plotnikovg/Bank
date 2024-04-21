@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using Bank.Domain.Common;
 
-namespace Bank.Domain.Aggregates.AccountAggregate;
+namespace Bank.Domain.Aggregates.UserAggregate;
 
 public class Account : BaseEntity, IAggregateRoot
 {
