@@ -4,7 +4,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bank.Domain", "Bank.Domain\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4AD65AA5-26F0-4198-9531-0CFF3AAE31FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bank.Infrastracture", "Bank.Infrastracture\Bank.Infrastracture.csproj", "{AC6AFF58-36DC-42DA-897E-679D3600A383}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bank.Infrastructure", "Bank.Infrastructure\Bank.Infrastructure.csproj", "{AC6AFF58-36DC-42DA-897E-679D3600A383}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
