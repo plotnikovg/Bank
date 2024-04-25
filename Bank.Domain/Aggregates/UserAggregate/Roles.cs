@@ -9,6 +9,7 @@ public class Roles : ValueObject
     public static Roles Client => new("Client");
 
     private string _value;
+    public string Value => _value;
     private Roles(string value)
     {
         _value = value;
