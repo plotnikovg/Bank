@@ -10,6 +10,8 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
     {
         userConfiguration.ToTable("Users");
         userConfiguration.Ignore(x => x.DomainEvents);
+        userConfiguration.Property(o => o.Login).IsRequired();
+        userConfiguration.Property(o => o.Password).IsRequired();
         userConfiguration.OwnsOne(p => p.Role);
     }
 }
