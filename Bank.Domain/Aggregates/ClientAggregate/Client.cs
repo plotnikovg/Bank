@@ -1,5 +1,3 @@
-using System.ComponentModel;
-using Bank.Domain.Aggregates.BankAccountAggregate;
 using Bank.Domain.Common;
 
 namespace Bank.Domain.Aggregates.ClientAggregate;

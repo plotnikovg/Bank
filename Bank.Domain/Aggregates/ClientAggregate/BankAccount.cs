@@ -1,7 +1,7 @@
-using System.Threading.Tasks.Dataflow;
+using Bank.Domain.Aggregates.UserAggregate;
 using Bank.Domain.Common;
 
-namespace Bank.Domain.Aggregates.BankAccountAggregate;
+namespace Bank.Domain.Aggregates.ClientAggregate;
 
 public class BankAccount : BaseEntity, IAggregateRoot
 {

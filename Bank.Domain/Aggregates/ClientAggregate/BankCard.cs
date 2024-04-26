@@ -1,6 +1,6 @@
 using Bank.Domain.Common;
 
-namespace Bank.Domain.Aggregates.BankAccountAggregate;
+namespace Bank.Domain.Aggregates.ClientAggregate;
 
 public class BankCard : BaseEntity
 {

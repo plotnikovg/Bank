@@ -1,4 +1,3 @@
-using Bank.Domain.Aggregates.BankAccountAggregate;
 using Bank.Domain.Aggregates.ClientAggregate;
 using Bank.Domain.Aggregates.UserAggregate;
 using Microsoft.EntityFrameworkCore;
