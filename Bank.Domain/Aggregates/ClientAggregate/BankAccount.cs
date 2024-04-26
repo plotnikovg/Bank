@@ -3,7 +3,7 @@ using Bank.Domain.Common;
 
 namespace Bank.Domain.Aggregates.ClientAggregate;
 
-public class BankAccount : BaseEntity, IAggregateRoot
+public class BankAccount : BaseEntity
 {
     public Money Balance { get; private set; }
     public decimal WithdrawalLimit { get; private set; } //Лимит на снятие средств
