@@ -6,6 +6,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4AD65AA5-26F
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bank.Infrastructure", "Bank.Infrastructure\Bank.Infrastructure.csproj", "{AC6AFF58-36DC-42DA-897E-679D3600A383}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bank.Application", "Bank.Application\Bank.Application.csproj", "{E02507F4-5FF7-48CE-A2C1-462328801ECA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,9 +22,14 @@ Global
 		{AC6AFF58-36DC-42DA-897E-679D3600A383}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC6AFF58-36DC-42DA-897E-679D3600A383}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AC6AFF58-36DC-42DA-897E-679D3600A383}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E02507F4-5FF7-48CE-A2C1-462328801ECA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E02507F4-5FF7-48CE-A2C1-462328801ECA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E02507F4-5FF7-48CE-A2C1-462328801ECA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E02507F4-5FF7-48CE-A2C1-462328801ECA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{A02B8A05-0EB7-4843-A021-327E2AE97B84} = {4AD65AA5-26F0-4198-9531-0CFF3AAE31FA}
 		{AC6AFF58-36DC-42DA-897E-679D3600A383} = {4AD65AA5-26F0-4198-9531-0CFF3AAE31FA}
+		{E02507F4-5FF7-48CE-A2C1-462328801ECA} = {4AD65AA5-26F0-4198-9531-0CFF3AAE31FA}
 	EndGlobalSection
 EndGlobal
