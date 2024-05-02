@@ -7,6 +7,7 @@ public class Client : BaseEntity, IAggregateRoot
 {
     public Name Name => Passport.Name;
     public Passport Passport { get; private set; }
+    public BankAccount? AccountForReceivingTransfers { get; private set; }
     private readonly List<BankAccount> _bankAccounts;
     public IReadOnlyCollection<BankAccount> BankAccounts => _bankAccounts.AsReadOnly();
 
@@ -22,5 +23,6 @@ public class Client : BaseEntity, IAggregateRoot
     public void AddBankAccount(BankAccount bankAccount)
     {
         _bankAccounts.Add(bankAccount);
+        if (AccountForReceivingTransfers == null) AccountForReceivingTransfers = bankAccount;
     }
 }   
