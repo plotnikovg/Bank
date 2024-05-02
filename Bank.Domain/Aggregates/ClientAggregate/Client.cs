@@ -25,4 +25,10 @@ public class Client : BaseEntity, IAggregateRoot
         _bankAccounts.Add(bankAccount);
         if (AccountForReceivingTransfers == null) AccountForReceivingTransfers = bankAccount;
     }
+
+    public void SetAccountForReceivingTransfers(BankAccount bankAccount)
+    {
+        if (!_bankAccounts.Contains(bankAccount)) throw new InvalidOperationException();
+        AccountForReceivingTransfers = bankAccount;
+    }
 }   
