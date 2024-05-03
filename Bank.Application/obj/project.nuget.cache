@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "d0c9JTXnjHLfXwxUoLp8BGaeq18qrtfAFIo7pnA0Z5gcueFwXNdP90FQAYsD1jTiKknOnGaYkNX/7T2KI76ZxQ==",
+  "dgSpecHash": "kzGiaH2AtnHnkrMddeTrTO16WfrOAeKpg3N9hbzEI+UA17KrKS4sWlEpLtGTW6l3oC65oswFM98nFb30uDnHGA==",
   "success": true,
   "projectFilePath": "C:\\Users\\mrgri\\source\\repos\\Bank\\Bank.Application\\Bank.Application.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\mrgri\\.nuget\\packages\\mediatr\\12.2.0\\mediatr.12.2.0.nupkg.sha512",
+    "C:\\Users\\mrgri\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
+    "C:\\Users\\mrgri\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512"
+  ],
   "logs": []
 }
