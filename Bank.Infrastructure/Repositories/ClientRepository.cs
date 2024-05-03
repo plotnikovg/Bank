@@ -21,8 +21,16 @@ public class ClientRepository : IClientRepository
             .Update(client)
             .Entity;
     }
+    
+    public Task<Client?> FindByPhoneNumberAsync(string phoneNumber)
+    {
+        var client = _context.Clients
+            .Where(p => p.PhoneNumber == phoneNumber)
+            .FirstOrDefaultAsync();
+        return client;
+    }
 
-    public Task<Client?> FindAsync(Passport passport)
+    public Task<Client?> FindByPassportAsync(Passport passport)
     {
         var client = _context.Clients
             .Where(p => p.Passport == passport)
