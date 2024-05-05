@@ -7,12 +7,13 @@ public class Passport
     public string Number { get; private set; }
     public RegistrationAddress RegistrationAddress { get; private set; }
 
-    public Passport(string series, string number, RegistrationAddress registrationAddress)
+    public Passport(Name name, string series, string number, RegistrationAddress registrationAddress)
     {
         if (!IsSeriesValid(series))
             throw new ArgumentException("series is not valid");
         if (!IsNumberValid(number))
             throw new ArgumentException("number is not valid");
+        Name = name;
         Series = series;
         Number = number;
         RegistrationAddress = registrationAddress;
