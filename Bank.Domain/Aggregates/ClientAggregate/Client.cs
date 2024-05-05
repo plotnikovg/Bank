@@ -16,9 +16,10 @@ public class Client : BaseEntity, IAggregateRoot
     {
         _bankAccounts = new List<BankAccount>();
     }
-    public Client(Passport passport)
+    public Client(Passport passport, string phoneNumber)
     {
         Passport = passport;
+        PhoneNumber = phoneNumber;
     }
 
     public void AddBankAccount(BankAccount bankAccount)
