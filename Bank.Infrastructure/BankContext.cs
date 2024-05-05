@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Bank.Infrastracture;
 
-public class BankContext : DbContext
+public class BankContext : DbContext, IUnitOfWork
 {
     public DbSet<Client> Clients { get; set; }
     public DbSet<BankAccount> BankAccounts { get; set; }
@@ -17,7 +17,7 @@ public class BankContext : DbContext
         //TODO
     }
 
-    public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+    public async Task<int> SaveEntitiesAsync(CancellationToken cancellationToken = default)
     {
         var result = await base.SaveChangesAsync(cancellationToken);
         return result;
