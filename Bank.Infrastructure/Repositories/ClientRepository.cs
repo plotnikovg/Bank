@@ -3,6 +3,7 @@ namespace Bank.Infrastracture.Repositories;
 public class ClientRepository : IClientRepository
 {
     private readonly BankContext _context;
+    public IUnitOfWork UnitOfWork => _context;
 
     public ClientRepository(BankContext context)
     {
