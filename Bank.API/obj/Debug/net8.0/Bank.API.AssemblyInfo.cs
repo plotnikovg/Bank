@@ -10,12 +10,12 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("Bank.Infrastracture")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("Bank.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+32cf54bfc5fd3f647c5ce2311ecce194745ca9d6")]
-[assembly: System.Reflection.AssemblyProductAttribute("Bank.Infrastracture")]
-[assembly: System.Reflection.AssemblyTitleAttribute("Bank.Infrastracture")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e7cf4ec166393b91e4af13a1d3312766a1167268")]
+[assembly: System.Reflection.AssemblyProductAttribute("Bank.API")]
+[assembly: System.Reflection.AssemblyTitleAttribute("Bank.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 
 // Создано классом WriteCodeFragment MSBuild.

@@ -1,4 +1,4 @@
-namespace Bank.Infrastracture.Repositories;
+namespace Bank.Infrastructure.Repositories;
 
 public class ClientRepository : IClientRepository
 {

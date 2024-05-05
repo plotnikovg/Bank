@@ -1,8 +1,4 @@
-using Bank.Domain.Aggregates.ClientAggregate;
-using Bank.Domain.Aggregates.UserAggregate;
-using Microsoft.EntityFrameworkCore;
-
-namespace Bank.Infrastracture;
+namespace Bank.Infrastructure;
 
 public class BankContext : DbContext, IUnitOfWork
 {

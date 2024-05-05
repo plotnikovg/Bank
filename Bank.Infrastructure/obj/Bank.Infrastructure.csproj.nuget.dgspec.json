@@ -1,7 +1,7 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\mrgri\\source\\repos\\Bank\\Bank.Infrastracture\\Bank.Infrastracture.csproj": {}
+    "C:\\Users\\mrgri\\source\\repos\\Bank\\Bank.Infrastructure\\Bank.Infrastructure.csproj": {}
   },
   "projects": {
     "C:\\Users\\mrgri\\source\\repos\\Bank\\Bank.Domain\\Bank.Domain.csproj": {
@@ -63,14 +63,14 @@
         }
       }
     },
-    "C:\\Users\\mrgri\\source\\repos\\Bank\\Bank.Infrastracture\\Bank.Infrastracture.csproj": {
+    "C:\\Users\\mrgri\\source\\repos\\Bank\\Bank.Infrastructure\\Bank.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mrgri\\source\\repos\\Bank\\Bank.Infrastracture\\Bank.Infrastracture.csproj",
-        "projectName": "Bank.Infrastracture",
-        "projectPath": "C:\\Users\\mrgri\\source\\repos\\Bank\\Bank.Infrastracture\\Bank.Infrastracture.csproj",
+        "projectUniqueName": "C:\\Users\\mrgri\\source\\repos\\Bank\\Bank.Infrastructure\\Bank.Infrastructure.csproj",
+        "projectName": "Bank.Infrastructure",
+        "projectPath": "C:\\Users\\mrgri\\source\\repos\\Bank\\Bank.Infrastructure\\Bank.Infrastructure.csproj",
         "packagesPath": "C:\\Users\\mrgri\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mrgri\\source\\repos\\Bank\\Bank.Infrastracture\\obj\\",
+        "outputPath": "C:\\Users\\mrgri\\source\\repos\\Bank\\Bank.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -106,6 +106,12 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[9.0.0-preview.3.24172.4, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

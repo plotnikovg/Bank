@@ -1,8 +1,4 @@
-using Bank.Domain.Aggregates.ClientAggregate;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
-namespace Bank.Infrastracture.Configurations;
+namespace Bank.Infrastructure.Configurations;
 
 public class ClientConfiguration : IEntityTypeConfiguration<Client>
 {
