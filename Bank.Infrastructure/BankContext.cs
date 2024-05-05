@@ -11,4 +11,15 @@ public class BankContext : DbContext
     public DbSet<User> Users { get; set; }
     
     public BankContext(DbContextOptions<BankContext> options) : base(options) { }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        //TODO
+    }
+
+    public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+    {
+        var result = await base.SaveChangesAsync(cancellationToken);
+        return result;
+    }
 }
