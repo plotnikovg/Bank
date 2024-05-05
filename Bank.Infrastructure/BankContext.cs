@@ -13,9 +13,9 @@ public class BankContext : DbContext, IUnitOfWork
         //TODO
     }
 
-    public async Task<int> SaveEntitiesAsync(CancellationToken cancellationToken = default)
+    public async Task<bool> SaveEntitiesAsync(CancellationToken cancellationToken = default)
     {
         var result = await base.SaveChangesAsync(cancellationToken);
-        return result;
+        return true;
     }
 }
