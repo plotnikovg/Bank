@@ -6,8 +6,8 @@ namespace Bank.Domain.Aggregates.ClientAggregate;
 public class Client : BaseEntity, IAggregateRoot
 {
     public Name Name => Passport.Name;
-    public string PhoneNumber { get; private set; }
     public Passport Passport { get; private set; }
+    public string PhoneNumber { get; private set; }
     public BankAccount? AccountForReceivingTransfers { get; private set; }
     private readonly List<BankAccount> _bankAccounts;
     public IReadOnlyCollection<BankAccount> BankAccounts => _bankAccounts.AsReadOnly();
