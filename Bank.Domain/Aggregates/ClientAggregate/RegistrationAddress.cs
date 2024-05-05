@@ -20,7 +20,8 @@ public class RegistrationAddress : ValueObject
         Street = street;
         HouseNumber = houseNumber;
     }
-    public RegistrationAddress(DateOnly registrationDate, string region, string city, string street, int houseNumber, string buildingNumber)
+    public RegistrationAddress(DateOnly registrationDate, string region, string city, string street, int houseNumber,
+        string? buildingNumber)
     {
         RegistrationDate = registrationDate;
         Region = region;
