@@ -1,12 +1,17 @@
 {
   "version": 2,
-  "dgSpecHash": "kzGiaH2AtnHnkrMddeTrTO16WfrOAeKpg3N9hbzEI+UA17KrKS4sWlEpLtGTW6l3oC65oswFM98nFb30uDnHGA==",
+  "dgSpecHash": "XJAsF9EPn7bW1rr7tSPB5NkxX6Ua+dgf3QIBkq3F1nlvKWnBhCjt+ngzQpBuYFQONiZLJF8aidjhns59FoilLA==",
   "success": true,
   "projectFilePath": "C:\\Users\\mrgri\\source\\repos\\Bank\\Bank.Application\\Bank.Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mrgri\\.nuget\\packages\\mediatr\\12.2.0\\mediatr.12.2.0.nupkg.sha512",
     "C:\\Users\\mrgri\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
-    "C:\\Users\\mrgri\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512"
+    "C:\\Users\\mrgri\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\9.0.0-preview.3.24172.9\\microsoft.extensions.dependencyinjection.9.0.0-preview.3.24172.9.nupkg.sha512",
+    "C:\\Users\\mrgri\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\9.0.0-preview.3.24172.9\\microsoft.extensions.dependencyinjection.abstractions.9.0.0-preview.3.24172.9.nupkg.sha512",
+    "C:\\Users\\mrgri\\.nuget\\packages\\microsoft.extensions.logging\\9.0.0-preview.3.24172.9\\microsoft.extensions.logging.9.0.0-preview.3.24172.9.nupkg.sha512",
+    "C:\\Users\\mrgri\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\9.0.0-preview.3.24172.9\\microsoft.extensions.logging.abstractions.9.0.0-preview.3.24172.9.nupkg.sha512",
+    "C:\\Users\\mrgri\\.nuget\\packages\\microsoft.extensions.options\\9.0.0-preview.3.24172.9\\microsoft.extensions.options.9.0.0-preview.3.24172.9.nupkg.sha512",
+    "C:\\Users\\mrgri\\.nuget\\packages\\microsoft.extensions.primitives\\9.0.0-preview.3.24172.9\\microsoft.extensions.primitives.9.0.0-preview.3.24172.9.nupkg.sha512"
   ],
   "logs": []
 }
