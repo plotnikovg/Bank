@@ -1,5 +1,3 @@
-using Bank.Domain.Aggregates.ClientAggregate;
-
 namespace Bank.Application.Commands;
 
 public class CreateClientCommandHandler : IRequestHandler<CreateClientCommand, bool>
