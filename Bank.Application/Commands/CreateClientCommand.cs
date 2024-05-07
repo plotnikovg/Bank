@@ -2,17 +2,17 @@ namespace Bank.Application.Commands;
 
 public class CreateClientCommand : IRequest<bool>
 {
-    public string FirstName { get; private set; }
-    public string LastName { get; private set; }
-    public string Patronymic { get; private set; } //отчество
-    public string PassportSeries { get; private set; }
-    public string PassportNumber { get; private set; }
-    public DateOnly RegistrationDate { get; private set; }
-    public string Region { get; private set; }
-    public string City { get; private set; }
-    public string Street { get; private set; }
-    public int HouseNumber { get; private set; } //Номер дома
-    public string? BuildingNumber { get; private set; } //Корпус
+    public string FirstName { get; init; }
+    public string LastName { get; init; }
+    public string Patronymic { get; init; } //отчество
+    public string PassportSeries { get; init; }
+    public string PassportNumber { get; init; }
+    public DateOnly RegistrationDate { get; init; }
+    public string Region { get; init; }
+    public string City { get; init; }
+    public string Street { get; init; }
+    public int HouseNumber { get; init; } //Номер дома
+    public string? BuildingNumber { get; init; } //Корпус
     public string PhoneNumber { get; init; }
 
     public CreateClientCommand(string firstName, string lastName, string patronymic, 
