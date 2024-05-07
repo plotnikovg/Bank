@@ -25,25 +25,25 @@ public class ClientRepository : IClientRepository
             .Entity;
     }
     
-    public Task<Client?> FindByPhoneNumberAsync(string phoneNumber)
+    public async Task<Client?> FindByPhoneNumberAsync(string phoneNumber)
     {
-        var client = _context.Clients
+        var client = await _context.Clients
             .Where(p => p.PhoneNumber == phoneNumber)
             .FirstOrDefaultAsync();
         return client;
     }
 
-    public Task<Client?> FindByPassportAsync(Passport passport)
+    public async Task<Client?> FindByPassportAsync(Passport passport)
     {
-        var client = _context.Clients
+        var client = await _context.Clients
             .Where(p => p.Passport == passport)
             .FirstOrDefaultAsync();
         return client;
     }
 
-    public Task<Client> FindByIdAsync(Guid id)
+    public async Task<Client> FindByIdAsync(Guid id)
     {
-        var client = _context.Clients
+        var client = await _context.Clients
             .Where(p => p.Id == id)
             .FirstOrDefaultAsync();
         return client;
