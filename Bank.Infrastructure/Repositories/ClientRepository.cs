@@ -1,3 +1,5 @@
+using Bank.Domain.Common;
+
 namespace Bank.Infrastructure.Repositories;
 
 public class ClientRepository : IClientRepository

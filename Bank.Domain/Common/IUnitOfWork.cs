@@ -1,4 +1,4 @@
-namespace Bank.Domain.Aggregates.ClientAggregate;
+namespace Bank.Domain.Common;
 
 public interface IUnitOfWork : IDisposable
 {

@@ -1,3 +1,5 @@
+using Bank.Domain.Common;
+
 namespace Bank.Domain.Aggregates.ClientAggregate;
 
 public interface IClientRepository

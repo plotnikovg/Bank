@@ -1,4 +1,5 @@
 using Bank.Domain.Aggregates.BankAccountAggregate;
+using Bank.Domain.Common;
 
 namespace Bank.Infrastructure;
 
