@@ -14,6 +14,10 @@ public class BankContext : DbContext, IUnitOfWork
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         //TODO
+        modelBuilder.Entity<Client>().HasData(
+            new Client(new Passport(new Name("Иванов", "Сергей", "Михайлович"), "1234", "22226666",
+                    new RegistrationAddress(new DateOnly(2003, 6, 18), "-", "Москва", "Комсомольская", 27)),
+                "+7(999)999-99-99"));
     }
 
     public async Task<bool> SaveEntitiesAsync(CancellationToken cancellationToken = default)
