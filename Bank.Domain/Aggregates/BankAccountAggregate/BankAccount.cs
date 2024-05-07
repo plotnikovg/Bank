@@ -1,7 +1,6 @@
-using Bank.Domain.Aggregates.UserAggregate;
 using Bank.Domain.Common;
 
-namespace Bank.Domain.Aggregates.ClientAggregate;
+namespace Bank.Domain.Aggregates.BankAccountAggregate;
 
 public class BankAccount : BaseEntity
 {

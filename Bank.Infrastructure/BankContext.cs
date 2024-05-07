@@ -1,3 +1,5 @@
+using Bank.Domain.Aggregates.BankAccountAggregate;
+
 namespace Bank.Infrastructure;
 
 public class BankContext : DbContext, IUnitOfWork

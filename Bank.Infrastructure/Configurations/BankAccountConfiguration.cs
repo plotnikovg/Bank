@@ -1,3 +1,5 @@
+using Bank.Domain.Aggregates.BankAccountAggregate;
+
 namespace Bank.Infrastructure.Configurations;
 
 public class BankAccountConfiguration : IEntityTypeConfiguration<BankAccount>
