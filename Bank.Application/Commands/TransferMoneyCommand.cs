@@ -1,5 +1,8 @@
 namespace Bank.Application.Commands;
-
+/// <summary>
+/// Команда перевода денег со счёта на счёт. Счёт оправителя определяется по идентификатору, получателя - по номеру телефона.
+/// </summary>
+/// <param name="SenderBankAccountId">Обязательный параметр</param>
 public class TransferMoneyCommand : IRequest<bool>
 {
     public Guid SenderBankAccountId { get; init; }
