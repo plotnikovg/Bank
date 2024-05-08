@@ -9,7 +9,7 @@ public class BankAccount : BaseEntity
     public decimal WithdrawalLimit { get; private set; } //Лимит на снятие средств
     public bool IsBlocked { get; private set; }
     //BankCards items can be added only through AddBankCard method
-    public List<Client> Clients { get; private set; }
+    public List<Client> Clients { get; private set; } = new List<Client>();
     private readonly List<BankCard> _bankCards;
     public IReadOnlyCollection<BankCard> BankCards => _bankCards.AsReadOnly(); //Карты
 
