@@ -1,3 +1,4 @@
+using Bank.Domain.Aggregates.ClientAggregate;
 using Bank.Domain.Common;
 
 namespace Bank.Domain.Aggregates.BankAccountAggregate;
@@ -8,6 +9,7 @@ public class BankAccount : BaseEntity
     public decimal WithdrawalLimit { get; private set; } //Лимит на снятие средств
     public bool IsBlocked { get; private set; }
     //BankCards items can be added only through AddBankCard method
+    public List<Client> Clients { get; private set; }
     private readonly List<BankCard> _bankCards;
     public IReadOnlyCollection<BankCard> BankCards => _bankCards.AsReadOnly(); //Карты
 
@@ -25,6 +27,11 @@ public BankAccount(Money balance, decimal withdrawalLimit)
     public void AddBankCard()
     {
         _bankCards.Add(new BankCard());
+    }
+
+    public void AddClient(Client client)
+    {
+        Clients.Add(client);
     }
 
     public bool IsBalanceNegative() => Balance.Amount < 0;
