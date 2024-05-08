@@ -8,6 +8,9 @@ public class BankAccountConfiguration : IEntityTypeConfiguration<BankAccount>
     {
         bankAccountConfiguration.ToTable("BankAccounts");
         bankAccountConfiguration.Ignore(x => x.DomainEvents);
-        bankAccountConfiguration.OwnsMany(o => o.BankCards);
+        bankAccountConfiguration.OwnsOne(o => o.Balance)
+            .OwnsOne(o => o.Currency);
+        bankAccountConfiguration.OwnsMany(o => o.BankCards)
+            .Ignore(x => x.DomainEvents);
     }
 }
