@@ -10,6 +10,11 @@ public class Roles : ValueObject
 
     private string _value;
     public string Value => _value;
+
+    protected Roles()
+    {
+        
+    }
     private Roles(string value)
     {
         _value = value;

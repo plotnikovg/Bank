@@ -7,6 +7,10 @@ public class Passport
     public string Number { get; private set; }
     public RegistrationAddress RegistrationAddress { get; private set; }
 
+    protected Passport()
+    {
+        
+    }
     public Passport(Name name, string series, string number, RegistrationAddress registrationAddress)
     {
         if (!IsSeriesValid(series))

@@ -7,6 +7,10 @@ public class Money : ValueObject
     public Currency Currency { get; private set; }
     public decimal Amount { get; private set; }
 
+    protected Money()
+    {
+        
+    }
     public Money(Currency currency, decimal amount)
     {
         Currency = currency;
