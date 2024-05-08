@@ -23,6 +23,12 @@ public class Client : BaseEntity, IAggregateRoot
         Passport = passport;
         PhoneNumber = phoneNumber;
     }
+    public Client(Guid id, Passport passport, string phoneNumber)
+    {
+        Id = id;
+        Passport = passport;
+        PhoneNumber = phoneNumber;
+    }
 
     public void AddBankAccount(BankAccount bankAccount)
     {
