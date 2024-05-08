@@ -914,6 +914,9 @@
       "Bank.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.Abstractions": "9.0.0-preview.3.24172.4"
+        },
         "compile": {
           "bin/placeholder/Bank.Domain.dll": {}
         },
@@ -926,6 +929,7 @@
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
           "Bank.Domain": "1.0.0",
+          "MediatR": "12.2.0",
           "Microsoft.EntityFrameworkCore.SqlServer": "9.0.0-preview.3.24172.4"
         },
         "compile": {

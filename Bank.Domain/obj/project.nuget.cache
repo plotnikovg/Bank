@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "BWgBT8DI8uoEpQJzfkjz/U3TjO7CaguMSyyGqRalcQ+oLErErKRe6JNbV/iGCSIWn4VE/4lpzEXGA5xUhNizjg==",
+  "dgSpecHash": "eCIA9hv+1yovo+2rAuYyzrfhkmHewFwNChsgmxbE2IP63frit2S2QV/43Z3tPTAC63bB98wdqpDXmcPZl5GqiA==",
   "success": true,
   "projectFilePath": "C:\\Users\\mrgri\\source\\repos\\Bank\\Bank.Domain\\Bank.Domain.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\mrgri\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\9.0.0-preview.3.24172.4\\microsoft.entityframeworkcore.abstractions.9.0.0-preview.3.24172.4.nupkg.sha512"
+  ],
   "logs": []
 }
