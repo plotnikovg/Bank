@@ -1,5 +1,5 @@
-using Bank.Domain.Aggregates.BankAccountAggregate;
 using Bank.Domain.Common;
+using Bank.Infrastructure.Configurations;
 
 namespace Bank.Infrastructure;
 
@@ -9,15 +9,27 @@ public class BankContext : DbContext, IUnitOfWork
     public DbSet<BankAccount> BankAccounts { get; set; }
     public DbSet<User> Users { get; set; }
     
-    public BankContext(DbContextOptions<BankContext> options) : base(options) { }
+    private readonly IMediator _mediator;
+
+    public BankContext()
+    { }
+    public BankContext(DbContextOptions<BankContext> options) : base(options)
+    { }
+    // public BankContext(DbContextOptions<BankContext> options, IMediator mediator) : base(options)
+    // {
+    //     _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
+    //     
+    // }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         //TODO
-        modelBuilder.Entity<Client>().HasData(
-            new Client(new Passport(new Name("Иванов", "Сергей", "Михайлович"), "1234", "22226666",
-                    new RegistrationAddress(new DateOnly(2003, 6, 18), "-", "Москва", "Комсомольская", 27)),
-                "+7(999)999-99-99"));
+        modelBuilder.ApplyConfiguration(new ClientConfiguration());
+        modelBuilder.ApplyConfiguration(new BankAccountConfiguration());
+        // modelBuilder.Entity<Client>().HasData(
+        //     new Client(new Passport(new Name("Сергей","Михаил", "Иванов", "Михайлович"), "1234", "22226666",
+        //             new RegistrationAddress(new DateOnly(2003, 6, 18), "-", "Москва", "Комсомольская", 27)),
+        //         "+7(999)999-99-99"));
     }
 
     public async Task<bool> SaveEntitiesAsync(CancellationToken cancellationToken = default)
