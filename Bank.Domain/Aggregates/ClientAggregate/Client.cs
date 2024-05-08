@@ -19,6 +19,7 @@ public class Client : BaseEntity, IAggregateRoot
     }
     public Client(Passport passport, string phoneNumber)
     {
+        Id = Guid.NewGuid();
         Passport = passport;
         PhoneNumber = phoneNumber;
     }
