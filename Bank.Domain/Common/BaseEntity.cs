@@ -2,7 +2,7 @@ namespace Bank.Domain.Common;
 
 public abstract class BaseEntity
 {
-    public Guid Id { get; private set; }
+    public Guid Id { get; private protected set; }
 
     private readonly List<BaseEvent> _domainEvents = [];
     public IReadOnlyCollection<BaseEvent> DomainEvents => _domainEvents.AsReadOnly();
