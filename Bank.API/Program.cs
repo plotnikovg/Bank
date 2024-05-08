@@ -1,8 +1,9 @@
 using Bank.Domain.Aggregates.ClientAggregate;
 using Bank.Domain.Aggregates.BankAccountAggregate;
-using Bank.Infrastructure.Repositories;
 using Bank.Infrastructure;
+using Bank.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.SqlServer;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,8 +14,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-string? connection = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<BankContext>(options => options.UseSqlServer(connection));
+// string? connection = builder.Configuration.GetConnectionString("DefaultConnection");
+// builder.Services.AddDbContext<BankContext>(options => options.UseSqlServer(connection));
+builder.Services.AddDbContext<BankContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
 builder.Services.AddScoped<IClientRepository, ClientRepository>();
 builder.Services.AddScoped<IBankAccountRepository, BankAccountRepository>();
 var app = builder.Build();
