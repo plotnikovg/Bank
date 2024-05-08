@@ -5,7 +5,7 @@ public class Passport
     public Name Name { get; private set; }
     public string Series { get; private set; }
     public string Number { get; private set; }
-    public RegistrationAddress RegistrationAddress { get; private set; }
+    public RegistrationAddress? RegistrationAddress { get; private set; }
 
     protected Passport()
     {
