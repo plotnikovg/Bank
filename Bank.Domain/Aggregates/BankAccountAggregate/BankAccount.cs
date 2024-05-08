@@ -18,10 +18,11 @@ public class BankAccount : BaseEntity
         _bankCards = new List<BankCard>();
     }
 
-public BankAccount(Money balance, decimal withdrawalLimit)
+public BankAccount(Money balance, decimal withdrawalLimit, Client client)
     {
         Balance = balance;
         WithdrawalLimit = withdrawalLimit;
+        Clients.Add(client);
     }
 
     public void AddBankCard()
