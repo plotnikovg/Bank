@@ -6,8 +6,10 @@ public class ClientConfiguration : IEntityTypeConfiguration<Client>
     {
         clientConfiguration.ToTable("Clients");
         clientConfiguration.Ignore(x => x.DomainEvents);
-        clientConfiguration.OwnsOne(p => p.Passport)
-            .Ignore(x => x.Name);
+        clientConfiguration.Ignore(p => p.Name);
+        clientConfiguration.OwnsOne(p => p.Passport).OwnsOne(p => p.Name);
+        clientConfiguration.OwnsOne(p => p.Passport).OwnsOne(p => p.RegistrationAddress);
+            
         //clientConfiguration.OwnsMany() TODO
     }
 }
