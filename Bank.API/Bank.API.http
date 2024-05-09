@@ -14,12 +14,9 @@ Accept: application/json
   "patronymic": "string",
   "passportSeries": "1234",
   "passportNumber": "222266",
-  "registrationDate": {
-    "year": 2002,
-    "month": 8,
-    "day": 8,
-    "dayOfWeek": 4
-  },
+  "registrationDateYear": 2002,
+  "registrationDateMonth": 8,
+  "registrationDateDay": 22,
   "region": "string",
   "city": "string",
   "street": "string",
