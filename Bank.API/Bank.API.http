@@ -4,3 +4,26 @@ GET {{Bank.API_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###
+
+POST {{Bank.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+{
+  "firstName": "string",
+  "lastName": "string",
+  "patronymic": "string",
+  "passportSeries": "1234",
+  "passportNumber": "222266",
+  "registrationDate": {
+    "year": 2002,
+    "month": 8,
+    "day": 8,
+    "dayOfWeek": 4
+  },
+  "region": "string",
+  "city": "string",
+  "street": "string",
+  "houseNumber": 0,
+  "buildingNumber": "string",
+  "phoneNumber": "string"
+}
