@@ -1,4 +1,5 @@
 using System.Reflection;
+using Bank.Application;
 using Bank.Domain.Aggregates.ClientAggregate;
 using Bank.Domain.Aggregates.BankAccountAggregate;
 using Bank.Infrastructure;
@@ -15,7 +16,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
+builder.Services.AddApplication();
 
 // string? connection = builder.Configuration.GetConnectionString("DefaultConnection");
 // builder.Services.AddDbContext<BankContext>(options => options.UseSqlServer(connection));
