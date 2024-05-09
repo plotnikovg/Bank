@@ -6,7 +6,7 @@ Accept: application/json
 ###
 
 POST {{Bank.API_HostAddress}}/weatherforecast/
-Accept: application/json
+//Accept: application/json
 
 {
   "firstName": "string",
@@ -24,3 +24,6 @@ Accept: application/json
   "buildingNumber": "string",
   "phoneNumber": "string"
 }
+
+
+###
