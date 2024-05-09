@@ -8,8 +8,8 @@ public class BankAccount : BaseEntity
     public Money Balance { get; private set; }
     public decimal WithdrawalLimit { get; private set; } //Лимит на снятие средств
     public bool IsBlocked { get; private set; }
-    //BankCards items can be added only through AddBankCard method
     //public List<Client> Clients { get; private set; } = new List<Client>();
+    //BankCards items can be added only through AddBankCard method
     private readonly List<BankCard> _bankCards;
     public IReadOnlyCollection<BankCard> BankCards => _bankCards.AsReadOnly(); //Карты
 
@@ -18,8 +18,15 @@ public class BankAccount : BaseEntity
         _bankCards = new List<BankCard>();
     }
 
-public BankAccount(Money balance, decimal withdrawalLimit)
+    public BankAccount(Money balance, decimal withdrawalLimit)
     {
+        Id = Guid.NewGuid();
+        Balance = balance;
+        WithdrawalLimit = withdrawalLimit;
+    }
+    public BankAccount(Guid id, Money balance, decimal withdrawalLimit)
+    {
+        Id = id;
         Balance = balance;
         WithdrawalLimit = withdrawalLimit;
     }
