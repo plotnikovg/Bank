@@ -14,7 +14,9 @@ public class CreateClientCommandHandler : IRequestHandler<CreateClientCommand, b
     public async Task<bool> Handle(CreateClientCommand request, CancellationToken cancellationToken)
     {
         var name = new Name(request.FirstName, request.LastName, request.Patronymic);
-        var registrationAddress = new RegistrationAddress(request.RegistrationDate, request.Region, request.City,
+        var registrationAddress = new RegistrationAddress
+        (new DateOnly(request.RegistrationDateYear, request.RegistrationDateMonth, request.RegistrationDateDay),
+            request.Region, request.City,
             request.Street, request.HouseNumber, request.BuildingNumber);
         var passport = new Passport(name, request.PassportSeries, request.PassportNumber, registrationAddress);
         var client = new Client(passport, request.PhoneNumber);

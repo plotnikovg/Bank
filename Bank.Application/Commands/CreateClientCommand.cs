@@ -7,7 +7,9 @@ public class CreateClientCommand : IRequest<bool>
     public string Patronymic { get; init; } //отчество
     public string PassportSeries { get; init; }
     public string PassportNumber { get; init; }
-    public DateOnly RegistrationDate { get; init; }
+    public int RegistrationDateYear { get; init; }
+    public int RegistrationDateMonth { get; init; }
+    public int RegistrationDateDay { get; init; }
     public string Region { get; init; }
     public string City { get; init; }
     public string Street { get; init; }
@@ -16,7 +18,7 @@ public class CreateClientCommand : IRequest<bool>
     public string PhoneNumber { get; init; }
 
     public CreateClientCommand(string firstName, string lastName, string patronymic, 
-        string passportSeries, string passportNumber, DateOnly registrationDate,
+        string passportSeries, string passportNumber, int registrationDateYear, int registrationDateMonth, int registrationDateDay,
         string region, string city, string street, int houseNumber, string? buildingNumber, 
         string phoneNumber)
     {
@@ -25,7 +27,9 @@ public class CreateClientCommand : IRequest<bool>
         Patronymic = patronymic;
         PassportSeries = passportSeries;
         PassportNumber = passportNumber;
-        RegistrationDate = registrationDate;
+        RegistrationDateYear = registrationDateYear;
+        RegistrationDateMonth = registrationDateMonth;
+        RegistrationDateDay = registrationDateDay;
         Region = region;
         City = city;
         Street = street;
