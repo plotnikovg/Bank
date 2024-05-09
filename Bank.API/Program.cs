@@ -1,3 +1,4 @@
+using System.Reflection;
 using Bank.Domain.Aggregates.ClientAggregate;
 using Bank.Domain.Aggregates.BankAccountAggregate;
 using Bank.Infrastructure;
@@ -13,6 +14,8 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 
 // string? connection = builder.Configuration.GetConnectionString("DefaultConnection");
 // builder.Services.AddDbContext<BankContext>(options => options.UseSqlServer(connection));
