@@ -48,4 +48,22 @@ public class ClientRepository : IClientRepository
             .FirstOrDefaultAsync();
         return client;
     }
+
+    public Client AddBankAccount(Client client, BankAccount bankAccount)
+    {
+        client.AddBankAccount(bankAccount);
+        return this.Update(client);
+    }
+
+    public Client AddBankAccount(Guid clientId, BankAccount bankAccount)
+    {
+        var client = this.FindByIdAsync(clientId).Result;
+        return this.AddBankAccount(client, bankAccount);
+    }
+
+    public Client AddBankAccount(Passport clientPassport, BankAccount bankAccount)
+    {
+        var client = this.FindByPassportAsync(clientPassport).Result ?? throw new ArgumentNullException(nameof(clientPassport));
+        return this.AddBankAccount(client, bankAccount);
+    }
 }
