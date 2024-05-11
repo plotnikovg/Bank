@@ -4,8 +4,13 @@ namespace Bank.Domain.Aggregates.BankAccountAggregate;
 
 public class Currency : ValueObject
 {
-    private readonly string _code;
-    public string Code => _code;
+    private string _code;
+
+    public string Code
+    {
+        get { return _code; } 
+        set { _code = value; }
+    }
     
     public static Currency RUB => new("RUB");
     public static Currency USD => new("USD");
