@@ -8,8 +8,13 @@ public class BankAccountConfiguration : IEntityTypeConfiguration<BankAccount>
     {
         bankAccountConfiguration.ToTable("BankAccounts");
         bankAccountConfiguration.Ignore(x => x.DomainEvents);
-        bankAccountConfiguration.OwnsOne(o => o.Balance)
-            .OwnsOne(o => o.Currency);
+        bankAccountConfiguration.OwnsOne(p => p.Balance, n => 
+        { 
+            n.OwnsOne(o => o.Currency, c =>
+            {
+                c.Property(x => x.Code).HasMaxLength(4);
+            });
+        });
         bankAccountConfiguration.OwnsMany(o => o.BankCards)
             .Ignore(x => x.DomainEvents);
     }
