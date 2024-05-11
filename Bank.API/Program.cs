@@ -16,14 +16,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddApplication();
+builder.Services.AddApplicationServices();
+builder.Services.AddInfrastructureServices(builder.Configuration);
 
-// string? connection = builder.Configuration.GetConnectionString("DefaultConnection");
-// builder.Services.AddDbContext<BankContext>(options => options.UseSqlServer(connection));
-builder.Services.AddDbContext<BankContext>(options =>
-{
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
-});
 builder.Services.AddScoped<IClientRepository, ClientRepository>();
 builder.Services.AddScoped<IBankAccountRepository, BankAccountRepository>();
 var app = builder.Build();
