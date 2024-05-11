@@ -1,13 +1,15 @@
+using Bank.Infrastructure.Identity;
 using Bank.Domain.Common;
 using Bank.Infrastructure.Configurations;
 
+
 namespace Bank.Infrastructure;
 
-public class BankContext : DbContext, IUnitOfWork
+public class BankContext : IdentityDbContext<ApplicationUser>, IUnitOfWork
 {
     public DbSet<Client> Clients { get; set; }
     public DbSet<BankAccount> BankAccounts { get; set; }
-    public DbSet<User> Users { get; set; }
+    public new DbSet<User> Users { get; set; }
     
     private readonly IMediator _mediator;
 
