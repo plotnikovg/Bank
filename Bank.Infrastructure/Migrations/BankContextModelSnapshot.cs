@@ -126,6 +126,11 @@ namespace Bank.Infrastructure.Migrations
                                     b2.Property<Guid>("MoneyBankAccountId")
                                         .HasColumnType("uniqueidentifier");
 
+                                    b2.Property<string>("Code")
+                                        .IsRequired()
+                                        .HasMaxLength(4)
+                                        .HasColumnType("nvarchar(4)");
+
                                     b2.HasKey("MoneyBankAccountId");
 
                                     b2.ToTable("BankAccounts");
