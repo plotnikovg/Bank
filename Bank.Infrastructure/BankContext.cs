@@ -26,6 +26,7 @@ public class BankContext : IdentityDbContext<ApplicationUser>, IUnitOfWork
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         //TODO
+        base.OnModelCreating(modelBuilder);
         modelBuilder.ApplyConfiguration(new ClientConfiguration());
         modelBuilder.ApplyConfiguration(new BankAccountConfiguration());
         // modelBuilder.Entity<Client>()
