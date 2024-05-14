@@ -86,4 +86,5 @@ app.MapRazorPages();
 //app.MapIdentityApi<ApplicationUser>();
 //app.MapControllers();
 
+
 app.Run();
