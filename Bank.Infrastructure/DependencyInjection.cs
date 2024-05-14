@@ -16,10 +16,6 @@ public static class DependencyInjection
         {
             options.UseSqlServer(connectionString);
         });
-
-        services.AddIdentityCore<ApplicationUser>()
-            .AddRoles<IdentityRole>()
-            .AddEntityFrameworkStores<BankContext>();
         
         return services;
     }
