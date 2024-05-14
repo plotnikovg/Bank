@@ -5,7 +5,7 @@ using Bank.Infrastructure.Configurations;
 
 namespace Bank.Infrastructure;
 
-public class BankContext : IdentityDbContext<ApplicationUser>, IUnitOfWork
+public class BankContext : IdentityDbContext<IdentityUser>, IUnitOfWork
 {
     public DbSet<Client> Clients { get; set; }
     public DbSet<BankAccount> BankAccounts { get; set; }
