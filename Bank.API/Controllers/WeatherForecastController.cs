@@ -2,11 +2,14 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Bank.Application.Commands;
 using Bank.Domain.Aggregates.ClientAggregate;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Bank.API.Controllers;
 
 [ApiController]
 [Route("[controller]")]
+[Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
 public class WeatherForecastController : ControllerBase
 {
     private static readonly string[] Summaries = new[]
