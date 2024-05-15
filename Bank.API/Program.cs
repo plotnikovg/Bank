@@ -5,6 +5,7 @@ using Bank.Domain.Aggregates.BankAccountAggregate;
 using Bank.Infrastructure;
 using Bank.Infrastructure.Identity;
 using Bank.Infrastructure.Repositories;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.SqlServer;
@@ -14,8 +15,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
-builder.Services.AddAuthentication();
-// builder.Services.AddAuthorization();
+// builder.Services.AddAuthentication();
+//builder.Services.AddAuthorization();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -28,7 +29,7 @@ builder.Services.AddInfrastructureServices(builder.Configuration);
 //     .AddRoles<IdentityRole>()
 //     .AddEntityFrameworkStores<BankContext>()
     // .AddApiEndpoints();
-builder.Services.AddIdentityApiEndpoints<IdentityUser>()
+builder.Services.AddIdentity<IdentityUser, IdentityRole>()
     .AddEntityFrameworkStores<BankContext>();
 builder.Services.Configure<IdentityOptions>(options =>
 {
@@ -45,6 +46,12 @@ builder.Services.Configure<IdentityOptions>(options =>
 
     options.User.RequireUniqueEmail = false;
 });
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
+    {
+        options.SlidingExpiration = true;
+        options.ExpireTimeSpan = new TimeSpan(0, 5, 0);
+    });
 
 // builder.Services.ConfigureApplicationCookie(options =>
 // {
@@ -62,7 +69,7 @@ builder.Services.AddScoped<IClientRepository, ClientRepository>();
 builder.Services.AddScoped<IBankAccountRepository, BankAccountRepository>();
 
 //Razor
-builder.Services.AddRazorPages();
+// builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
@@ -80,10 +87,13 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
-
-app.MapRazorPages();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+});
+//app.MapRazorPages();
 //app.MapGroup("/account").MapIdentityApi<ApplicationUser>();
-//app.MapIdentityApi<ApplicationUser>();
+//app.MapIdentityApi<IdentityUser>();
 //app.MapControllers();
 
 
