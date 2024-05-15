@@ -91,7 +91,8 @@ namespace Bank.API.Controllers
             await HttpContext.SignInAsync(
                 CookieAuthenticationDefaults.AuthenticationScheme,
                 new ClaimsPrincipal(claimsIdentity));
-
+            
+            _logger.LogInformation("Success log in. Username: {@request.UserName}", request.UserName);
             return Ok(new { Message = "Logged in" });
         }
 
@@ -100,6 +101,7 @@ namespace Bank.API.Controllers
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            _logger.LogInformation("Success log out. Username: {@userName}", HttpContext.User.Identity!.Name);
             return Ok(new { Message = "Logged out"});
         }
     }
