@@ -63,9 +63,9 @@ namespace Bank.API.Controllers
 
         [HttpGet]
         [Route("login1")]
-        public async Task<string> Login(string returnUrl = null)
+        public IActionResult Login(string returnUrl = null)
         {
-            return "GetLogin";
+            return File("~/index.html", "text/html");
         }
         [HttpPost]
         [Route("Login")]
