@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace Bank.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class AccountController : ControllerBase
     {
@@ -18,14 +18,16 @@ namespace Bank.API.Controllers
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IMediator _mediator;
         private readonly ILogger<AccountController> _logger;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
         public AccountController(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager,
-            IMediator mediator, ILogger<AccountController> logger)
+            IMediator mediator, ILogger<AccountController> logger, IHttpContextAccessor httpContextAccessor)
         {
             _signInManager = signInManager;
             _userManager = userManager;
             _mediator = mediator;
             _logger = logger;
+            _httpContextAccessor = httpContextAccessor;
         }
         
         [HttpPost]
@@ -59,6 +61,12 @@ namespace Bank.API.Controllers
             return Ok(new { Message = "User Registration Successful" });
         }
 
+        [HttpGet]
+        [Route("login1")]
+        public async Task<string> Login(string returnUrl = null)
+        {
+            return "GetLogin";
+        }
         [HttpPost]
         [Route("Login")]
         public async Task<IActionResult> Login([FromBody] LoginRequest? request)
@@ -88,9 +96,11 @@ namespace Bank.API.Controllers
             };
 
             var claimsIdentity = new ClaimsIdentity(claims!, CookieAuthenticationDefaults.AuthenticationScheme);
-            await HttpContext.SignInAsync(
-                CookieAuthenticationDefaults.AuthenticationScheme,
-                new ClaimsPrincipal(claimsIdentity));
+            // await _httpContextAccessor.HttpContext.SignInAsync(
+            //     CookieAuthenticationDefaults.AuthenticationScheme,
+            //     new ClaimsPrincipal(claimsIdentity),
+            //     new AuthenticationProperties());
+            await _signInManager.SignInAsync(identityUser, isPersistent: true);
             
             _logger.LogInformation("Success log in. Username: {@request.UserName}", request.UserName);
             return Ok(new { Message = "Logged in" });
@@ -100,9 +110,19 @@ namespace Bank.API.Controllers
         [Route("Logout")]
         public async Task<IActionResult> Logout()
         {
-            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            if (HttpContext.User.Identity == null || HttpContext.User.Identity.IsAuthenticated == false)
+                return Ok(new { Message = "Already logged out"});
+            //await _httpContextAccessor.HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            await _signInManager.SignOutAsync();
             _logger.LogInformation("Success log out. Username: {@userName}", HttpContext.User.Identity!.Name);
             return Ok(new { Message = "Logged out"});
+        }
+
+        [HttpGet]
+        [Route("CheckLogin")]
+        public bool CheckLogin()
+        {
+            return _httpContextAccessor.HttpContext!.User.Identity.IsAuthenticated;
         }
     }
 }
