@@ -1,0 +1,61 @@
+﻿<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>ttt</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- App favicon -->
+
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    <!-- App Css-->
+    <link href="~/css/leftContainer.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/topContainer.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/transfers.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body class="body">
+<div class="leftContainer">
+    <img src="~/images/Group 39.svg" class="logo">
+    <div class="menu">
+        <div class="menu-item first">
+            <img src="~/images/home.svg" style="margin-left: 16px;">
+            <a style="margin-left: 10px;">Главная</a>
+        </div>
+        <div class="menu-item">
+            <img src="~/images/transfer.svg" style="margin-left: 16px;">
+            <a style="margin-left: 10px;">Переводы</a>
+        </div>
+        <div class="menu-item">
+            <img src="~/images/icon-2.svg" style="margin-left: 16px;">
+            <a style="margin-left: 10px;">Статистика</a>
+        </div>
+        <div class="menu-item">
+            <img src="~/images/icon.svg" style="margin-left: 16px;">
+            <a style="margin-left: 10px;">Помощь</a>
+        </div>
+    </div>
+    <div class="currencies">
+        <div class="currency-item">
+            <div class="val">88.6</div>
+            <div class="cur">USD</div>
+        </div>
+        <div class="currency-item" style="margin-left: 10px;">
+            <div class="val">94.2</div>
+            <div class="cur">EUR</div>
+        </div>
+    </div>
+</div>
+<div class="topContainer">
+    <div class="pageName">
+        Переводы
+    </div>
+    <div class="navBar">
+        <input type="text" class="searchBar">
+        <img src="~/images/notification.svg" style="margin-left: 20px;">
+        <img src="~/images/account.svg" style="margin-left: 20px;">
+    </div>
+</div>
+@RenderBody()
+</body>
+</html>

@@ -1,0 +1,39 @@
+@{
+    Layout = null;
+}
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8" />
+        <title>Вход</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+        <meta content="Themesdesign" name="author" />
+        <!-- App favicon -->
+        
+        <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+        <!-- App Css-->
+        <link href="~/css/main.css" rel="stylesheet" type="text/css" />
+
+    </head>
+
+    <body class="body">
+        <div class = "base">
+            <div class=logoAndLogin>
+                <img src="images/logo.svg" alt="logo" class = "logo">
+                <div class = "loginLabel">Вход</div>
+            </div>
+            
+            <div class="others">
+                <form class="mainForm" method="post" action="@Url.Action("Login")">
+                <input type="tel" class="phoneNumberForm" name="UserName" placeholder="Enter your phone number">
+                <input type="password" class="passwordForm" name="Password" placeholder="Enter your password">
+                <button class = "confirm" type="submit" onmouseover="">Войти</button>
+                </form>
+            </div>
+            
+        </div>
+        <img src="~/images/bg ornament.svg" class="bgImage">
+    </body>
+</html>

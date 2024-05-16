@@ -1,0 +1,74 @@
+.leftContainer{
+	width: 286px;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+  grid-column: 1;
+  grid-row: 1 / span 2;
+}
+.logo{
+	margin-top: 32px;
+	width: 144px;
+}
+.menu {
+  width: 254px;
+  height: 286px;
+  display: flex; /* Use flexbox for easy horizontal layout */
+  flex-direction: column;
+  justify-content: center;
+  background-color: white; /* Light gray background */
+  margin-top: 32px;
+  border-top: 16px;
+  box-shadow: 0px 0px 12px 1px rgba(37, 39, 62, 0.19);
+  border-radius: 20px;
+}
+
+.menu-item {
+  width: 222px; /* Each div takes 20% of the menu width */
+  height:56px;
+  display: flex;
+  align-items: center;
+  border-radius: 14px; /* Rounded corners */
+  background-color: #fff; /* White background for each item */
+  box-shadow: 0px 0px 7px 1px rgba(37, 39, 62, 0.21);      
+  cursor: pointer; /* Indicate that items are clickable */
+  margin-top: 10px;
+  margin-left: 16px;
+  font-family: Montserrat;
+}
+.first{
+ margin-top: 0;
+}
+.currencies{
+ width: 254px;
+ height: 52px;
+ border-radius: 20px;
+ background-color: #fff; /* White background for each item */
+ box-shadow: 0px 0px 10px 1px rgba(37, 39, 62, 0.19);
+ margin-top: auto;
+ margin-bottom: 16px;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+
+}
+.currency-item{
+ width: 82px;
+ height: 24px;
+ display: flex;
+ align-items: center;
+}
+.val{
+ color: #373962;
+ font-family: Montserrat;
+ font-size: 16px;
+ font-weight: bold;
+}
+.cur{
+ color: #373962;
+ margin-left: 4px;
+ font-family: Montserrat;
+ font-size: 14px;
+ font-weight: medium;
+}
