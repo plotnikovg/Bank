@@ -46,13 +46,27 @@ builder.Services.Configure<IdentityOptions>(options =>
 
     options.User.RequireUniqueEmail = false;
 });
-builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
-    {
-        options.SlidingExpiration = true;
-        options.ExpireTimeSpan = new TimeSpan(0, 5, 0);
-    });
+// builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+//     .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
+//     {
+//         options.Cookie.HttpOnly = true;
+//         options.SlidingExpiration = true;
+//         options.ExpireTimeSpan = new TimeSpan(0, 5, 0);
+//         options.LoginPath= new Microsoft.AspNetCore.Http.PathString("/login.html");
+//         options.AccessDeniedPath = "/index";
+//     });
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    // Cookie settings
+    options.Cookie.HttpOnly = true;
+    options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
 
+    options.LoginPath = "/Account/login1";
+    options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+    options.SlidingExpiration = true;
+});
+
+builder.Services.AddHttpContextAccessor();
 // builder.Services.ConfigureApplicationCookie(options =>
 // {
 //     // Cookie settings
@@ -81,16 +95,19 @@ if (app.Environment.IsDevelopment())
 }
 
 //app.UseHttpsRedirection();
+app.UseDefaultFiles();
 app.UseStaticFiles();
 
 app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapControllers();
-});
+
+// app.UseEndpoints(endpoints =>
+// {
+//     endpoints.MapControllers();
+// });
+app.MapControllers();
 //app.MapRazorPages();
 //app.MapGroup("/account").MapIdentityApi<ApplicationUser>();
 //app.MapIdentityApi<IdentityUser>();
