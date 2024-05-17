@@ -81,10 +81,6 @@
       "PackagePath": "staticwebassets\\images\\transfer.svg"
     },
     {
-      "Id": "C:\\Users\\mrgri\\source\\repos\\Bank\\Bank.WebClient\\wwwroot\\js\\site.js",
-      "PackagePath": "staticwebassets\\js\\site.js"
-    },
-    {
       "Id": "C:\\Users\\mrgri\\source\\repos\\Bank\\Bank.WebClient\\wwwroot\\lib\\bootstrap\\LICENSE",
       "PackagePath": "staticwebassets\\lib\\bootstrap"
     },
