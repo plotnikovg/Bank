@@ -32,8 +32,18 @@ public class AccountController : Controller
 
         if (response.IsSuccessStatusCode)
         {
-            return RedirectToAction("Index", "Home");
+            var cookieOptions = new CookieOptions
+            {
+                Expires = new DateTimeOffset?(DateTimeOffset.Now.AddMinutes(5)),
+                HttpOnly = true
+            };
+            Response.Cookies.Append("UserLoggedIn", "true", cookieOptions);
+            //return RedirectToAction("Index", "Home");
         }
+        //
+        request = new HttpRequestMessage(HttpMethod.Get, _httpClient.BaseAddress + "Account/Account/CheckLogin");
+        response = await _httpClient.GetAsync(_httpClient.BaseAddress + "Account/CheckLogin");
+        bool isLoggedIn = await response.Content.ReadFromJsonAsync<bool>();
         return View();
     }
 }
