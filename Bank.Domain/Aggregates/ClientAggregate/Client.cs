@@ -33,7 +33,8 @@ public class Client : BaseEntity, IAggregateRoot
     public void AddBankAccount(BankAccount bankAccount)
     {
         _bankAccounts.Add(bankAccount);
-        if (AccountForReceivingTransfers == null) AccountForReceivingTransfers = bankAccount;
+        if (AccountForReceivingTransfers == null) 
+            SetAccountForReceivingTransfers(bankAccount);
     }
 
     public void SetAccountForReceivingTransfers(BankAccount bankAccount)
