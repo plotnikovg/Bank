@@ -18,7 +18,6 @@ public class BankAccount : BaseEntity
     {
         _bankCards = new List<BankCard>();
     }
-
     public BankAccount(Money balance, decimal withdrawalLimit)
     {
         Id = Guid.NewGuid();
@@ -32,24 +31,22 @@ public class BankAccount : BaseEntity
         WithdrawalLimit = withdrawalLimit;
     }
 
-    public void AddBankCard()
-    {
-        _bankCards.Add(new BankCard());
-    }
-
-    public bool IsBalanceNegative() => Balance.Amount < 0;
     public void BalanceIncrease(Money money)
     {
         if (Balance.Currency != money.Currency) throw new FormatException();
         Balance.Increase(money.Amount);
     }
-
     public void BalanceDecrease(Money money)
     {
         if (Balance.Currency != money.Currency) throw new FormatException();
         if (Balance.Amount < money.Amount) throw new InvalidOperationException();
         Balance.Decrease(money.Amount);
     }
+    public void AddBankCard()
+    {
+        _bankCards.Add(new BankCard());
+    }
+    public bool IsBalanceNegative() => Balance.Amount < 0;
     //Заблокировать счёт
     public void Block()
     {
