@@ -6,12 +6,13 @@ namespace Bank.Domain.Aggregates.BankAccountAggregate;
 public class BankAccount : BaseEntity
 {
     public Money Balance { get; private set; }
-    public decimal WithdrawalLimit { get; private set; } //Лимит на снятие средств
+    //Лимит на снятие средств
+    public decimal WithdrawalLimit { get; private set; } 
     public bool IsBlocked { get; private set; }
-    //public List<Client> Clients { get; private set; } = new List<Client>();
-    //BankCards items can be added only through AddBankCard method
+    //Банковские карты могут быть добавлены
+    //только черещ метод AddBankCard()
     private readonly List<BankCard> _bankCards;
-    public IReadOnlyCollection<BankCard> BankCards => _bankCards.AsReadOnly(); //Карты
+    public IReadOnlyCollection<BankCard> BankCards => _bankCards.AsReadOnly();
 
     protected BankAccount()
     {
@@ -36,11 +37,6 @@ public class BankAccount : BaseEntity
         _bankCards.Add(new BankCard());
     }
 
-    // public void AddClient(Client client)
-    // {
-    //     Clients.Add(client);
-    // }
-
     public bool IsBalanceNegative() => Balance.Amount < 0;
     public void BalanceIncrease(Money money)
     {
@@ -54,11 +50,13 @@ public class BankAccount : BaseEntity
         if (Balance.Amount < money.Amount) throw new InvalidOperationException();
         Balance.Decrease(money.Amount);
     }
+    //Заблокировать счёт
     public void Block()
     {
         if (IsBlocked) throw new InvalidOperationException();
         IsBlocked = true;
     }
+    //Разблокировать счёт
     public void Unblock()
     {
         if (!IsBlocked) throw new InvalidOperationException();
