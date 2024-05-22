@@ -30,7 +30,8 @@ builder.Services.AddInfrastructureServices(builder.Configuration);
 //     .AddEntityFrameworkStores<BankContext>()
     // .AddApiEndpoints();
 builder.Services.AddIdentity<IdentityUser, IdentityRole>()
-    .AddEntityFrameworkStores<BankContext>();
+    .AddEntityFrameworkStores<BankContext>()
+    .AddSignInManager<SignInManager<IdentityUser>>();
 builder.Services.Configure<IdentityOptions>(options =>
 {
     options.Password.RequireDigit = true;
@@ -55,16 +56,16 @@ builder.Services.Configure<IdentityOptions>(options =>
 //         options.LoginPath= new Microsoft.AspNetCore.Http.PathString("/login.html");
 //         options.AccessDeniedPath = "/index";
 //     });
-builder.Services.ConfigureApplicationCookie(options =>
-{
-    // Cookie settings
-    options.Cookie.HttpOnly = true;
-    options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
-
-    options.LoginPath = "/Account/login1";
-    options.AccessDeniedPath = "/Identity/Account/AccessDenied";
-    options.SlidingExpiration = true;
-});
+// builder.Services.ConfigureApplicationCookie(options =>
+// {
+//     // Cookie settings
+//     options.Cookie.HttpOnly = true;
+//     options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+//
+//     options.LoginPath = "/Account/login1";
+//     options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+//     options.SlidingExpiration = true;
+// });
 
 builder.Services.AddHttpContextAccessor();
 // builder.Services.ConfigureApplicationCookie(options =>
