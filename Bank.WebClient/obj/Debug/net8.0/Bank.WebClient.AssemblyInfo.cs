@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Bank.WebClient")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+578eb914a97b6411c4642f0affb13b8e85dcc8f3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+288d573e270404cee22fcc40949f66361d8e4034")]
 [assembly: System.Reflection.AssemblyProductAttribute("Bank.WebClient")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Bank.WebClient")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
