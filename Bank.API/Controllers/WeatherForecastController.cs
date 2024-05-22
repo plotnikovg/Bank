@@ -19,7 +19,7 @@ public class WeatherForecastController : ControllerBase
 
     private readonly IMediator _mediator;
     private readonly ILogger<WeatherForecastController> _logger;
-    
+
     public WeatherForecastController(IMediator mediator, ILogger<WeatherForecastController> logger)
     {
         _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
@@ -30,16 +30,17 @@ public class WeatherForecastController : ControllerBase
     public IEnumerable<WeatherForecast> Get()
     {
         return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-        {
-            Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            TemperatureC = Random.Shared.Next(-20, 55),
-            Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-        })
-        .ToArray();
+            {
+                Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
+                TemperatureC = Random.Shared.Next(-20, 55),
+                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
+            })
+            .ToArray();
     }
 
     [HttpPost]
-    public async Task<ActionResult<bool>> Post([FromBody] CreateClientCommand command, CancellationToken cancellationToken)
+    public async Task<ActionResult<bool>> Post([FromBody] CreateClientCommand command,
+        CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(command, cancellationToken);
         return Ok(result);
