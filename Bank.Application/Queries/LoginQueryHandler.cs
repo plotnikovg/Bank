@@ -1,3 +1,4 @@
+using Bank.Application.Interfaces;
 using Bank.Application.Models;
 using Microsoft.AspNetCore.Identity;
 
@@ -7,6 +8,7 @@ public class LoginQueryHandler : IRequestHandler<LoginQuery, Tuple<bool, UserVie
 {
     private readonly UserManager<IdentityUser> _userManager;
     private readonly SignInManager<IdentityUser> _signInManager;
+    private readonly IJwtGenerator _jwtGenerator;
 
     private readonly ILogger<LoginQueryHandler> _logger;
 
@@ -42,7 +44,7 @@ public class LoginQueryHandler : IRequestHandler<LoginQuery, Tuple<bool, UserVie
         return Tuple.Create(true, new UserViewModel
         {
             UserName = identityUser.UserName,
-            Token = "testToken"
+            Token = _jwtGenerator.CreateToken(identityUser)
         });
     }
 }
