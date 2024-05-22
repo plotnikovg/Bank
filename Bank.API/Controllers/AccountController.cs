@@ -67,6 +67,7 @@ namespace Bank.API.Controllers
         {
             return File("~/index.html", "text/html");
         }
+        
         [HttpPost]
         [Route("Login")]
         public async Task<IActionResult> Login([FromBody] LoginRequest? request)
