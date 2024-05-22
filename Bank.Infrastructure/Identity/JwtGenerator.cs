@@ -14,7 +14,7 @@ public class JwtGenerator : IJwtGenerator
 
     public JwtGenerator(IConfiguration configuration)
     {
-        _key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["TokenKey"]));
+        _key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("test token key"));
     }
     public string CreateToken(IdentityUser identityUser)
     {
