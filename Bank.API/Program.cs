@@ -1,20 +1,32 @@
 using System.Reflection;
+using System.Text;
 using Bank.Application;
+using Bank.Application.Interfaces;
 using Bank.Domain.Aggregates.ClientAggregate;
 using Bank.Domain.Aggregates.BankAccountAggregate;
 using Bank.Infrastructure;
 using Bank.Infrastructure.Identity;
 using Bank.Infrastructure.Repositories;
-using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.SqlServer;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("test key"));
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = key,
+        ValidateAudience = false,
+        ValidateIssuer = false
+    };
+});
 // builder.Services.AddAuthentication();
 //builder.Services.AddAuthorization();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -82,6 +94,7 @@ builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddScoped<IClientRepository, ClientRepository>();
 builder.Services.AddScoped<IBankAccountRepository, BankAccountRepository>();
+builder.Services.AddScoped<IJwtGenerator, JwtGenerator>();
 
 //Razor
 // builder.Services.AddRazorPages();
