@@ -45,6 +45,7 @@ public class AccountController : Controller
                 HttpOnly = true,
                 IsEssential = true
             });
+            request.Headers.Add("Cookie", $"@{Response.Cookies.ToString()}");
         }
 
         if (response.IsSuccessStatusCode)
@@ -60,6 +61,7 @@ public class AccountController : Controller
         response = await _httpClient.GetAsync(_httpClient.BaseAddress + "WeatherForecast/GetWeatherForecast");
         //
         request = new HttpRequestMessage(HttpMethod.Get, _httpClient.BaseAddress + "Account/Account/CheckLogin");
+
         response = await _httpClient.GetAsync(_httpClient.BaseAddress + "Account/CheckLogin");
         bool isLoggedIn = await response.Content.ReadFromJsonAsync<bool>();
         return View();
