@@ -2,6 +2,7 @@
 
 GET {{Bank.API_HostAddress}}/weatherforecast/
 Accept: application/json
+Cookie: Token=eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIrNzExMSIsIm5iZiI6MTcxNjU2NTQwMSwiZXhwIjoxNzE2NjE1ODAxLCJpYXQiOjE3MTY1NjU0MDF9.PcwJNTc_nRxjr8ZBJIOtrPKHUEppYV8ahjXNpvUsq1eXiKYlomVaA-O6_gK78KcNBHKCfxk6yVWSy0PbsESjeQ
 
 ###
 
