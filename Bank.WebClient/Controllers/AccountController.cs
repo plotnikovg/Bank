@@ -75,7 +75,8 @@ public class AccountController : Controller
         }
 
         response = await httpClient.GetAsync(httpClient.BaseAddress + "Account/CheckLogin");
-        string isLoggedIn = await response.Content.ReadFromJsonAsync<string>();
+        bool isLoggedIn = await response.Content.ReadFromJsonAsync<bool>();
+        // string? isLoggedIn = await response.Content.ReadAsStringAsync();
         return View();
     }
     [NonAction]
@@ -102,9 +103,9 @@ public class AccountController : Controller
             {
                 result.Add(new Cookie
                 {
-                    Name = cookie.Name.Value,
+                    Name = cookie.Name.Value!,
                     Value = cookie.Value.Value,
-                    Expires = cookie.Expires.Value.UtcDateTime,
+                    Expires = cookie.Expires!.Value.UtcDateTime,
                     HttpOnly = cookie.HttpOnly,
                     Secure = cookie.Secure
                 });
