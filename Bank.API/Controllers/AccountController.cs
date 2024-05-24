@@ -139,17 +139,17 @@ namespace Bank.API.Controllers
             return Ok(new { Message = "Logged out"});
         }
 
-        // [HttpGet]
-        // [Route("CheckLogin")]
-        // public bool CheckLogin()
-        // {
-        //     return _httpContextAccessor.HttpContext!.User.Identity.IsAuthenticated;
-        // }
         [HttpGet]
         [Route("CheckLogin")]
-        public string CheckLogin()
+        public bool CheckLogin()
         {
-            return _httpContextAccessor.HttpContext!.User.Identity.IsAuthenticated ? "yes" : "no";
+            return _httpContextAccessor.HttpContext!.User.Identity.IsAuthenticated;
         }
+        // [HttpGet]
+        // [Route("CheckLogin")]
+        // public IActionResult CheckLogin()
+        // {
+        //     return _httpContextAccessor.HttpContext!.User.Identity.IsAuthenticated ? Ok() : Unauthorized();
+        // }
     }
 }
