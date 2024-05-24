@@ -1,5 +1,7 @@
 using System.Security.Claims;
 using Bank.API.Models;
+using Bank.Application.Models;
+using Bank.Application.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -68,43 +70,61 @@ namespace Bank.API.Controllers
             return File("~/index.html", "text/html");
         }
         
-        [HttpPost]
-        [Route("Login")]
-        public async Task<IActionResult> Login([FromBody] LoginRequest? request)
+        // [HttpPost]
+        // [Route("Login")]
+        // public async Task<IActionResult> Login([FromBody] LoginRequest? request)
+        // {
+        //     if (!ModelState.IsValid || request == null)
+        //         return new BadRequestObjectResult(new {Message = "Login failed"});
+        //     
+        //     var identityUser = await _userManager.FindByNameAsync(request.UserName);
+        //     if (identityUser == null)
+        //     {
+        //         _logger.LogInformation("Failed login attempt: User with username {@request.UserName} not found", request.UserName);
+        //         return new BadRequestObjectResult(new { Message = "User with this phoneNumber not found" });
+        //     }
+        //
+        //     var result = _userManager.PasswordHasher.VerifyHashedPassword(identityUser, identityUser.PasswordHash!,
+        //         request.Password);
+        //     if (result == PasswordVerificationResult.Failed)
+        //     {
+        //         _logger.LogInformation("Failed login attempt: Wrong password. Username: {@request.UserName}", request.UserName);
+        //         return new BadRequestObjectResult(new { Message = "Wrong password" });
+        //     }
+        //
+        //     var claims = new List<Claim?>
+        //     {
+        //         new Claim(ClaimTypes.Email, identityUser.Email!),
+        //         new Claim(ClaimTypes.Name, identityUser.UserName!)
+        //     };
+        //
+        //     var claimsIdentity = new ClaimsIdentity(claims!, CookieAuthenticationDefaults.AuthenticationScheme);
+        //     // await _httpContextAccessor.HttpContext.SignInAsync(
+        //     //     CookieAuthenticationDefaults.AuthenticationScheme,
+        //     //     new ClaimsPrincipal(claimsIdentity),
+        //     //     new AuthenticationProperties());
+        //     await _signInManager.SignInAsync(identityUser, isPersistent: true);
+        //     
+        //     _logger.LogInformation("Success log in. Username: {@request.UserName}", request.UserName);
+        //     return Ok(new { Message = "Logged in" });
+        // }
+        [HttpPost("Login")]
+        public async Task<IActionResult> Login([FromBody] LoginQuery request)
         {
-            if (!ModelState.IsValid || request == null)
-                return new BadRequestObjectResult(new {Message = "Login failed"});
-            
-            var identityUser = await _userManager.FindByNameAsync(request.UserName);
-            if (identityUser == null)
+            var res =  await _mediator.Send(request);
+            // return res.Item2;
+            var token = res.Item2.Token;
+            Response.Cookies.Append("Token", token, new CookieOptions
             {
-                _logger.LogInformation("Failed login attempt: User with username {@request.UserName} not found", request.UserName);
-                return new BadRequestObjectResult(new { Message = "User with this phoneNumber not found" });
-            }
-
-            var result = _userManager.PasswordHasher.VerifyHashedPassword(identityUser, identityUser.PasswordHash!,
-                request.Password);
-            if (result == PasswordVerificationResult.Failed)
+                Expires = DateTime.Now.AddMinutes(12),
+                HttpOnly = true,
+                Secure = true
+            });
+            return Ok(new
             {
-                _logger.LogInformation("Failed login attempt: Wrong password. Username: {@request.UserName}", request.UserName);
-                return new BadRequestObjectResult(new { Message = "Wrong password" });
-            }
-
-            var claims = new List<Claim?>
-            {
-                new Claim(ClaimTypes.Email, identityUser.Email!),
-                new Claim(ClaimTypes.Name, identityUser.UserName!)
-            };
-
-            var claimsIdentity = new ClaimsIdentity(claims!, CookieAuthenticationDefaults.AuthenticationScheme);
-            // await _httpContextAccessor.HttpContext.SignInAsync(
-            //     CookieAuthenticationDefaults.AuthenticationScheme,
-            //     new ClaimsPrincipal(claimsIdentity),
-            //     new AuthenticationProperties());
-            await _signInManager.SignInAsync(identityUser, isPersistent: true);
-            
-            _logger.LogInformation("Success log in. Username: {@request.UserName}", request.UserName);
-            return Ok(new { Message = "Logged in" });
+                token = token,
+                bal = token
+            });
         }
 
         [HttpPost]
@@ -119,11 +139,17 @@ namespace Bank.API.Controllers
             return Ok(new { Message = "Logged out"});
         }
 
+        // [HttpGet]
+        // [Route("CheckLogin")]
+        // public bool CheckLogin()
+        // {
+        //     return _httpContextAccessor.HttpContext!.User.Identity.IsAuthenticated;
+        // }
         [HttpGet]
         [Route("CheckLogin")]
-        public bool CheckLogin()
+        public string CheckLogin()
         {
-            return _httpContextAccessor.HttpContext!.User.Identity.IsAuthenticated;
+            return _httpContextAccessor.HttpContext!.User.Identity.IsAuthenticated ? "yes" : "no";
         }
     }
 }
