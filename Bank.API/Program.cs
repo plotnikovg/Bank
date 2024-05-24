@@ -10,37 +10,55 @@ using Bank.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
-var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("test key"));
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
-{
-    options.TokenValidationParameters = new TokenValidationParameters
-    {
-        ValidateIssuerSigningKey = true,
-        IssuerSigningKey = key,
-        ValidateAudience = false,
-        ValidateIssuer = false
-    };
-});
-// builder.Services.AddAuthentication();
-//builder.Services.AddAuthorization();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "AuthCore API", Version = "v1" });
+
+    var securityScheme = new OpenApiSecurityScheme
+    {
+        Name = "JWT Authentication",
+        Description = "Enter your JWT token in this field",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.Http,
+        Scheme = "bearer",
+        BearerFormat = "JWT"
+    };
+
+    c.AddSecurityDefinition("Bearer", securityScheme);
+
+    var securityRequirement = new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                }
+            },
+            new string[] {}
+        }
+    };
+
+    c.AddSecurityRequirement(securityRequirement);
+});
+
 //DI
 builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);
 
 //Identity
-// builder.Services.AddDefaultIdentity<ApplicationUser>()
-//     .AddRoles<IdentityRole>()
-//     .AddEntityFrameworkStores<BankContext>()
-    // .AddApiEndpoints();
 builder.Services.AddIdentity<IdentityUser, IdentityRole>()
     .AddEntityFrameworkStores<BankContext>()
     .AddSignInManager<SignInManager<IdentityUser>>();
@@ -59,38 +77,27 @@ builder.Services.Configure<IdentityOptions>(options =>
 
     options.User.RequireUniqueEmail = false;
 });
-// builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-//     .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
-//     {
-//         options.Cookie.HttpOnly = true;
-//         options.SlidingExpiration = true;
-//         options.ExpireTimeSpan = new TimeSpan(0, 5, 0);
-//         options.LoginPath= new Microsoft.AspNetCore.Http.PathString("/login.html");
-//         options.AccessDeniedPath = "/index";
-//     });
-// builder.Services.ConfigureApplicationCookie(options =>
-// {
-//     // Cookie settings
-//     options.Cookie.HttpOnly = true;
-//     options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
-//
-//     options.LoginPath = "/Account/login1";
-//     options.AccessDeniedPath = "/Identity/Account/AccessDenied";
-//     options.SlidingExpiration = true;
-// });
+var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("hru3j7fz2k91k7g467dgte543mnf7g4f8h9fj7ydfg6789dfgdhfkghdfg67823p29375khdfg6"));
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(options =>
+{
+    options.RequireHttpsMetadata = false;
+    options.SaveToken = true;
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = key,
+        ValidateAudience = false,
+        ValidateIssuer = false
+    };
+});
+builder.Services.AddAuthorization();
 
 builder.Services.AddHttpContextAccessor();
-// builder.Services.ConfigureApplicationCookie(options =>
-// {
-//     // Cookie settings
-//     options.Cookie.HttpOnly = true;
-//     options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
-//
-//     options.LoginPath = "/Areas/Identity/Pages/Account/Login";
-//     options.LogoutPath = "/Areas/Identity/Pages/Account/Logout";
-//     options.AccessDeniedPath = "/Areas/Identity/Pages/Account/AccessDenied";
-//     options.SlidingExpiration = true;
-// });
 
 builder.Services.AddScoped<IClientRepository, ClientRepository>();
 builder.Services.AddScoped<IBankAccountRepository, BankAccountRepository>();
