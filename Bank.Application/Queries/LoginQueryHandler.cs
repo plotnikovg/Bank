@@ -13,10 +13,11 @@ public class LoginQueryHandler : IRequestHandler<LoginQuery, Tuple<bool, UserVie
     private readonly ILogger<LoginQueryHandler> _logger;
 
     public LoginQueryHandler(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager,
-        ILogger<LoginQueryHandler> logger)
+        IJwtGenerator jwtGenerator ,ILogger<LoginQueryHandler> logger)
     {
         _userManager = userManager;
         _signInManager = signInManager;
+        _jwtGenerator = jwtGenerator;
         _logger = logger;
     }
 
