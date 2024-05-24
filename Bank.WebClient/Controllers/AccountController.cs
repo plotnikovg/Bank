@@ -1,3 +1,5 @@
+using System.Net;
+using System.Net.Http.Headers;
 using System.Text;
 using Bank.WebClient.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -7,12 +9,11 @@ namespace Bank.WebClient.Controllers;
 
 public class AccountController : Controller
 {
-    private readonly HttpClient _httpClient;
+    private readonly IHttpClientFactory _clientFactory;
     private Uri _baseAddress = new Uri("http://localhost:5020");
-     public AccountController()
+     public AccountController(IHttpClientFactory clientFactory)
      {
-         _httpClient = new HttpClient();
-         _httpClient.BaseAddress = _baseAddress;
+         _clientFactory = clientFactory;
      }
 
     [HttpGet]
@@ -24,46 +25,57 @@ public class AccountController : Controller
     [HttpPost]
     public async Task<IActionResult> Login(LoginViewModel loginViewModel)
     {
-        var req = new HttpRequestMessage(HttpMethod.Post, _httpClient.BaseAddress + "Account/Logout");
-        var res = await _httpClient.SendAsync(req);
+        using HttpClient httpClient = _clientFactory.CreateClient();
+        httpClient.BaseAddress = _baseAddress;
         
-        req = new HttpRequestMessage(HttpMethod.Get, _httpClient.BaseAddress + "Account/Account/CheckLogin");
-        res = await _httpClient.GetAsync(_httpClient.BaseAddress + "Account/CheckLogin");
-        bool isL = await res.Content.ReadFromJsonAsync<bool>();
+        // var req = new HttpRequestMessage(HttpMethod.Post, httpClient.BaseAddress + "Account/Logout");
+        // var res = await httpClient.SendAsync(req);
+        //
+        // req = new HttpRequestMessage(HttpMethod.Get, httpClient.BaseAddress + "Account/Account/CheckLogin");
+        // res = await httpClient.GetAsync(httpClient.BaseAddress + "Account/CheckLogin");
+        // bool isL = await res.Content.ReadFromJsonAsync<bool>();
         
-        var request = new HttpRequestMessage(HttpMethod.Post, _httpClient.BaseAddress + "Account/Login");
+        var request = new HttpRequestMessage(HttpMethod.Post, httpClient.BaseAddress + "Account/Login");
         request.Content = new StringContent(JsonConvert.SerializeObject(loginViewModel), Encoding.UTF8, "application/json");
-        var response = await _httpClient.SendAsync(request);
+        var response = await httpClient.SendAsync(request);
 
-        var cookies = ExtractCookiesFromResponse(response);
+
+        //var cookies = ExtractCookiesFromResponse(response);
+        var cookies = ExtractCookiesFromResponseList(response);
         
         foreach (var item in cookies)
         {
-            Response.Cookies.Append(item.Key, item.Value, new CookieOptions
+            Response.Cookies.Append(item.Name, item.Value, new CookieOptions
             {
-                Expires = DateTime.Now.AddMinutes(5),
-                HttpOnly = true,
+                Expires = item.Expires,
+                HttpOnly = item.HttpOnly,
+                Secure = item.Secure,
                 IsEssential = true
+                //IsEssential = true
             });
-            request.Headers.Add("Cookie", $"@{Response.Cookies.ToString()}");
+            // request.Headers.Add("Cookie", $"@{Response.Cookies.ToString()}");
         }
-
+        
         if (response.IsSuccessStatusCode)
         {
-            // var cookieOptions = new CookieOptions
-            // {
-            //     Expires = new DateTimeOffset?(DateTimeOffset.Now.AddMinutes(5)),
-            //     HttpOnly = true
-            // };
-            // Response.Cookies.Append("UserLoggedIn", "true", cookieOptions);
-            //return RedirectToAction("Index", "Home");
+             var cookieOptions = new CookieOptions
+             {
+                 Expires = new DateTimeOffset?(DateTimeOffset.Now.AddMinutes(5)),
+                 HttpOnly = true
+             };
+             //Response.Cookies.Append("UserLoggedIn", "true", cookieOptions);
+            // return RedirectToAction("Index", "Home");
         }
-        response = await _httpClient.GetAsync(_httpClient.BaseAddress + "WeatherForecast/GetWeatherForecast");
-        //
-        request = new HttpRequestMessage(HttpMethod.Get, _httpClient.BaseAddress + "Account/Account/CheckLogin");
+        
+        Request.Cookies.TryGetValue("Token", out string? token);
+        if (token != null)
+        {
+            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            response = await httpClient.GetAsync(httpClient.BaseAddress + "WeatherForecast");
+        }
 
-        response = await _httpClient.GetAsync(_httpClient.BaseAddress + "Account/CheckLogin");
-        bool isLoggedIn = await response.Content.ReadFromJsonAsync<bool>();
+        response = await httpClient.GetAsync(httpClient.BaseAddress + "Account/CheckLogin");
+        string isLoggedIn = await response.Content.ReadFromJsonAsync<string>();
         return View();
     }
     [NonAction]
@@ -80,4 +92,25 @@ public class AccountController : Controller
         }
         return result;
     }
+    public static List<Cookie> ExtractCookiesFromResponseList(HttpResponseMessage response)
+    {
+        List<Cookie> result = [];
+        IEnumerable<string> values;
+        if (response.Headers.TryGetValues("Set-Cookie", out values))
+        {
+            Microsoft.Net.Http.Headers.SetCookieHeaderValue.ParseList(values.ToList()).ToList().ForEach(cookie =>
+            {
+                result.Add(new Cookie
+                {
+                    Name = cookie.Name.Value,
+                    Value = cookie.Value.Value,
+                    Expires = cookie.Expires.Value.UtcDateTime,
+                    HttpOnly = cookie.HttpOnly,
+                    Secure = cookie.Secure
+                });
+            });
+        }
+        return result;
+    }
+    
 }
