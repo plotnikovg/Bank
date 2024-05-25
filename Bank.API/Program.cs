@@ -95,7 +95,12 @@ builder.Services.AddAuthentication(options =>
         ValidateIssuer = false
     };
 });
-builder.Services.AddAuthorization();
+// builder.Services.AddAuthorization(options =>
+// {
+//     options.AddPolicy("Admin", policy => policy.RequireRole("Admin"));
+//     options.AddPolicy("Manager", policy => policy.RequireRole("Manager"));
+//     options.AddPolicy("Client", policy => policy.RequireRole("Client"));
+// });
 
 builder.Services.AddHttpContextAccessor();
 
@@ -124,6 +129,20 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
+using (var scope = app.Services.CreateScope())
+{
+    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
+    var roles = new[] { "Admin", "Manager", "Client" };
+    await userManager.AddToRoleAsync(await userManager.FindByNameAsync("+7111"), "Manager");
+    // foreach (var role in roles)
+    // {
+    //     if (!await roleManager.RoleExistsAsync(role))
+    //     {
+    //         await roleManager.CreateAsync(new IdentityRole(role));
+    //     }
+    // }
+}
 // app.UseEndpoints(endpoints =>
 // {
 //     endpoints.MapControllers();
