@@ -42,10 +42,11 @@ public class LoginQueryHandler : IRequestHandler<LoginQuery, Tuple<bool, UserVie
         }
 
         _logger.LogInformation("Success log in. Username: {@request.UserName}", request.UserName);
+        var roles = await _userManager.GetRolesAsync(identityUser);
         return Tuple.Create(true, new UserViewModel
         {
             UserName = identityUser.UserName,
-            Token = _jwtGenerator.CreateToken(identityUser)
+            Token = _jwtGenerator.CreateToken(identityUser, roles.ToList())
         });
     }
 }
