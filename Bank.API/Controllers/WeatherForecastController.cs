@@ -9,7 +9,7 @@ namespace Bank.API.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-[Authorize]
+[Authorize(Roles = "Manager")]
 public class WeatherForecastController : ControllerBase
 {
     private static readonly string[] Summaries = new[]
