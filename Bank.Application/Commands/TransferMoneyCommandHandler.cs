@@ -1,4 +1,5 @@
 using System.Collections.Immutable;
+using Bank.Application.Repositories;
 using Bank.Domain.Aggregates.BankAccountAggregate;
 
 namespace Bank.Application.Commands;

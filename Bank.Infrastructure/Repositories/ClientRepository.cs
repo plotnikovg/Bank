@@ -1,3 +1,4 @@
+using Bank.Application.Repositories;
 using Bank.Domain.Common;
 
 namespace Bank.Infrastructure.Repositories;

@@ -2,6 +2,7 @@ using System.Reflection;
 using System.Text;
 using Bank.Application;
 using Bank.Application.Interfaces;
+using Bank.Application.Repositories;
 using Bank.Domain.Aggregates.ClientAggregate;
 using Bank.Domain.Aggregates.BankAccountAggregate;
 using Bank.Infrastructure;

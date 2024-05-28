@@ -1,3 +1,5 @@
+using Bank.Application.Repositories;
+
 namespace Bank.Application.Commands;
 
 public class UpdateClientCommandHandler : IRequestHandler<UpdateClientCommand, bool>
