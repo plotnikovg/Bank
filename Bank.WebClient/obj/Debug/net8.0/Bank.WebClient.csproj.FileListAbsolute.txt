@@ -30,3 +30,4 @@ C:\Users\mrgri\source\repos\Bank\Bank.WebClient\obj\Debug\net8.0\ref\Bank.WebCli
 C:\Users\mrgri\source\repos\Bank\Bank.WebClient\bin\Debug\net8.0\Newtonsoft.Json.dll
 C:\Users\mrgri\source\repos\Bank\Bank.WebClient\obj\Debug\net8.0\Bank.WebClient.csproj.AssemblyReference.cache
 C:\Users\mrgri\source\repos\Bank\Bank.WebClient\obj\Debug\net8.0\Bank.Web.060A9289.Up2Date
+C:\Users\mrgri\source\repos\Bank\Bank.WebClient\bin\Debug\net8.0\UAParser.dll
