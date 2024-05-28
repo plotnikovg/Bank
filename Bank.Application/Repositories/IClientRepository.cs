@@ -1,7 +1,7 @@
 using Bank.Domain.Aggregates.BankAccountAggregate;
 using Bank.Domain.Common;
 
-namespace Bank.Domain.Aggregates.ClientAggregate;
+namespace Bank.Application.Repositories;
 
 public interface IClientRepository
 {
