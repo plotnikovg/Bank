@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "avP8ouiQIkFDduo2P9kaiItO5I3hMqCcmLcLnrxAxOLlorjqzZkpNg2Ii0NtQoH3ljT3WnYaE+FL9QwBFkCNTQ==",
+  "dgSpecHash": "HvkBVExf0kuNX+U63Vpt6k0BLnU20uhcQxgFXHSJyxuLOdOcPvDZiqIREp8M69CyYS2tZ1bXxTm8dtjJ/3gAUw==",
   "success": true,
   "projectFilePath": "C:\\Users\\mrgri\\source\\repos\\Bank\\Bank.WebClient\\Bank.WebClient.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\mrgri\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+    "C:\\Users\\mrgri\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
+    "C:\\Users\\mrgri\\.nuget\\packages\\uaparser\\3.1.47\\uaparser.3.1.47.nupkg.sha512"
   ],
   "logs": []
 }
