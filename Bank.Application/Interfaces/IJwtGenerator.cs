@@ -4,5 +4,5 @@ namespace Bank.Application.Interfaces;
 
 public interface IJwtGenerator
 {
-    string CreateToken(IdentityUser user, List<string> roles);
+    string CreateToken(string userId, List<string> roles, string userIp, string userBrowser);
 }

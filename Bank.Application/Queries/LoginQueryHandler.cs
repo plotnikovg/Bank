@@ -46,7 +46,7 @@ public class LoginQueryHandler : IRequestHandler<LoginQuery, Tuple<bool, UserVie
         return Tuple.Create(true, new UserViewModel
         {
             UserName = identityUser.UserName,
-            Token = _jwtGenerator.CreateToken(identityUser, roles.ToList())
+            Token = _jwtGenerator.CreateToken(identityUser.Id, roles.ToList(), request.Ip, request.Browser)
         });
     }
 }
