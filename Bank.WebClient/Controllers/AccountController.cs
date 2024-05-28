@@ -10,10 +10,12 @@ namespace Bank.WebClient.Controllers;
 public class AccountController : Controller
 {
     private readonly IHttpClientFactory _clientFactory;
-    private Uri _baseAddress = new Uri("http://localhost:5020");
-     public AccountController(IHttpClientFactory clientFactory)
+    private readonly IHttpContextAccessor _httpContextAccessor;
+    private readonly Uri _baseAddress = new Uri("http://localhost:5020");
+     public AccountController(IHttpClientFactory clientFactory, IHttpContextAccessor httpContextAccessor)
      {
          _clientFactory = clientFactory;
+         _httpContextAccessor = httpContextAccessor;
      }
 
     [HttpGet]
@@ -27,6 +29,21 @@ public class AccountController : Controller
     {
         using HttpClient httpClient = _clientFactory.CreateClient();
         httpClient.BaseAddress = _baseAddress;
+        
+        var clientIp = Request.HttpContext.Connection.RemoteIpAddress?.ToString();
+        var clientUserAgent = Request.HttpContext.Request.Headers.UserAgent.ToString();
+
+        var uaParser = Parser.GetDefault();
+        var clientBrowserResult = uaParser.Parse(clientUserAgent);
+        var clientBrowser = clientBrowserResult.UA.Family + "/" + clientBrowserResult.UA.Major + "." + clientBrowserResult.UA.Minor;
+        
+        var test = Request.HttpContext.Request.Headers["MS_HttpContext"];
+        
+        if (clientIp == null || clientBrowser == null)
+            return View();
+        
+        loginViewModel.Ip = clientIp;
+        loginViewModel.Browser = clientBrowser;
         
         // var req = new HttpRequestMessage(HttpMethod.Post, httpClient.BaseAddress + "Account/Logout");
         // var res = await httpClient.SendAsync(req);
