@@ -28,10 +28,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="EndPoints\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <_ContentIncludedByDefault Remove="wwwroot\css\site.css" />
     <_ContentIncludedByDefault Remove="wwwroot\favicon.ico" />
     <_ContentIncludedByDefault Remove="wwwroot\js\site.js" />
