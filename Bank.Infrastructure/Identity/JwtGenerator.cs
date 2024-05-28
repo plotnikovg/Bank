@@ -21,8 +21,8 @@ public class JwtGenerator : IJwtGenerator
         var claims = new List<Claim>
         {
             new Claim(JwtRegisteredClaimNames.NameId, userId),
-            new Claim(ClaimTypes.AuthenticationInstant, userIp),
-            new Claim(ClaimTypes.AuthorizationDecision, userBrowser)
+            new Claim(JwtRegisteredClaimNames.Prn, userIp),
+            new Claim(JwtRegisteredClaimNames.Aud, userBrowser)
         };
         foreach (var role in roles)
             claims.Add(new Claim(ClaimTypes.Role, role));
