@@ -97,12 +97,6 @@ builder.Services.AddAuthentication(options =>
         ValidateIssuer = false
     };
 });
-// builder.Services.AddAuthorization(options =>
-// {
-//     options.AddPolicy("Admin", policy => policy.RequireRole("Admin"));
-//     options.AddPolicy("Manager", policy => policy.RequireRole("Manager"));
-//     options.AddPolicy("Client", policy => policy.RequireRole("Client"));
-// });
 
 builder.Services.AddHttpContextAccessor();
 
@@ -110,10 +104,9 @@ builder.Services.AddScoped<IClientRepository, ClientRepository>();
 builder.Services.AddScoped<IBankAccountRepository, BankAccountRepository>();
 builder.Services.AddScoped<IJwtGenerator, JwtGenerator>();
 
-//Razor
-// builder.Services.AddRazorPages();
-
 var app = builder.Build();
+
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -145,15 +138,8 @@ using (var scope = app.Services.CreateScope())
     //     }
     // }
 }
-// app.UseEndpoints(endpoints =>
-// {
-//     endpoints.MapControllers();
-// });
 app.MapControllers();
-//app.MapRazorPages();
-//app.MapGroup("/account").MapIdentityApi<ApplicationUser>();
-//app.MapIdentityApi<IdentityUser>();
-//app.MapControllers();
+
 
 
 app.Run();
