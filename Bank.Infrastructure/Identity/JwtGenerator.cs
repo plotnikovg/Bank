@@ -18,17 +18,23 @@ public class JwtGenerator : IJwtGenerator
     }
     public string CreateToken(string userId, List<string> roles, string userIp, string userBrowser)
     {
+        //Сбор данных пользователя
         var claims = new List<Claim>
         {
+            //Id
             new Claim(JwtRegisteredClaimNames.NameId, userId),
+            //Ip
             new Claim(JwtRegisteredClaimNames.Prn, userIp),
+            //Браузер
             new Claim(JwtRegisteredClaimNames.Aud, userBrowser)
         };
         foreach (var role in roles)
+            //Роли
             claims.Add(new Claim(ClaimTypes.Role, role));
 
         var credentials = new SigningCredentials(_key, SecurityAlgorithms.HmacSha512Signature);
-
+        
+        //tokenDescriptor содержит информацию для создания токена
         var tokenDescriptor = new SecurityTokenDescriptor
         {
             Subject = new ClaimsIdentity(claims),
@@ -37,6 +43,7 @@ public class JwtGenerator : IJwtGenerator
         };
         var tokenHandler = new JwtSecurityTokenHandler();
 
+        //Создание токена
         var token = tokenHandler.CreateToken(tokenDescriptor);
         return tokenHandler.WriteToken(token);
     }
