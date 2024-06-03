@@ -27,7 +27,7 @@
             
             <div class="others">
                 <form class="mainForm" method="post" action="@Url.Action("Login")">
-                    @Html.AntiForgeryToken();
+                    @Html.AntiForgeryToken()
                     <input type="tel" class="phoneNumberForm" name="UserName" placeholder="Enter your phone number">
                     <input type="password" class="passwordForm" name="Password" placeholder="Enter your password">
                     <button class="confirm" type="submit" onmouseover="">Войти</button>
