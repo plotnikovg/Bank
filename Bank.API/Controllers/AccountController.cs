@@ -123,8 +123,7 @@ namespace Bank.API.Controllers
             });
             return Ok(new
             {
-                token = token,
-                bal = token
+                token = token
             });
         }
 
