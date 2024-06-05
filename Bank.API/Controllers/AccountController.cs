@@ -17,13 +17,13 @@ namespace Bank.API.Controllers
     [ApiController]
     public class AccountController : ControllerBase
     {
-        private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<IdentityUser> _userManager;
         private readonly IMediator _mediator;
         private readonly ILogger<AccountController> _logger;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public AccountController(SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager,
+        public AccountController(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager,
             IMediator mediator, ILogger<AccountController> logger, IHttpContextAccessor httpContextAccessor)
         {
             _signInManager = signInManager;
@@ -42,7 +42,7 @@ namespace Bank.API.Controllers
                 return new BadRequestObjectResult(new { Message = "User Registration Failed" });
             }
             
-            var identityUser = new ApplicationUser { Email = request.Email, UserName = request.PhoneNumber, PhoneNumber = request.PhoneNumber };
+            var identityUser = new IdentityUser { Email = request.Email, UserName = request.PhoneNumber, PhoneNumber = request.PhoneNumber };
             var result = await _userManager.CreateAsync(identityUser, request.Password);
             
             if (!result.Succeeded)
