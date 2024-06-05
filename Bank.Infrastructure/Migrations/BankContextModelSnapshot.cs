@@ -57,9 +57,15 @@ namespace Bank.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("AccountForReceivingTransfersId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Clients", (string)null);
                 });
@@ -352,6 +358,12 @@ namespace Bank.Infrastructure.Migrations
                     b.HasOne("Bank.Domain.Aggregates.BankAccountAggregate.BankAccount", "AccountForReceivingTransfers")
                         .WithMany()
                         .HasForeignKey("AccountForReceivingTransfersId");
+
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.OwnsOne("Bank.Domain.Aggregates.ClientAggregate.Passport", "Passport", b1 =>
                         {
