@@ -1,9 +1,13 @@
+using Bank.Infrastructure.Identity;
+
 namespace Bank.Infrastructure.Configurations;
 
 public class ClientConfiguration : IEntityTypeConfiguration<Client>
 {
     public void Configure(EntityTypeBuilder<Client> clientConfiguration)
     {
+        clientConfiguration.HasKey(x => x.Id);
+        clientConfiguration.HasOne<IdentityUser>().WithMany().HasForeignKey(x => x.UserId);
         clientConfiguration.ToTable("Clients");
         clientConfiguration.Ignore(x => x.DomainEvents);
         clientConfiguration.Ignore(p => p.Name);
@@ -20,7 +24,5 @@ public class ClientConfiguration : IEntityTypeConfiguration<Client>
             n.OwnsOne(o => o.RegistrationAddress);
         });
         
-
-        //clientConfiguration.OwnsMany() TODO
     }
 }
