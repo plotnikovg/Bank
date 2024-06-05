@@ -6,6 +6,7 @@ namespace Bank.Domain.Aggregates.ClientAggregate;
 //Bank client
 public class Client : BaseEntity, IAggregateRoot
 {
+    public virtual string UserId { get; set; }
     public Name Name => Passport.Name;
     public Passport Passport { get; private set; }
     public string PhoneNumber { get; private set; }
@@ -29,7 +30,7 @@ public class Client : BaseEntity, IAggregateRoot
         Passport = passport;
         PhoneNumber = phoneNumber;
     }
-
+    
     public void AddBankAccount(BankAccount bankAccount)
     {
         _bankAccounts.Add(bankAccount);
