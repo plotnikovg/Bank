@@ -7,7 +7,17 @@ builder.Services.AddHttpClient();
 builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
+app.Use(async (context, next) =>
+{
 
+    // Set CSP
+    context.Response.Headers.Append("Content-Security-Policy",
+        "script-src 'self'; " +
+        "style-src 'self' https://fonts.googleapis.com;" +
+        "img-src 'self';" +
+        "font-src 'self' https://fonts.gstatic.com;");
+    await next(context);
+});
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
@@ -28,5 +38,6 @@ app.MapControllerRoute(
 // app.MapControllerRoute(
 //     name: "default",
 //     pattern: "{controller=Home}/{action=Index}/{id?}");
+
 
 app.Run();

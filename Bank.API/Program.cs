@@ -106,6 +106,24 @@ builder.Services.AddScoped<IJwtGenerator, JwtGenerator>();
 
 var app = builder.Build();
 
+var serverHeader = app.Configuration["Kestrel:Headers:Server"];
+var xPoweredByHeader = app.Configuration["Kestrel:Headers:X-Powered-By"];
+
+// Modify headers in the middleware pipeline
+app.Use(async (context, next) =>
+{
+    // Set custom headers
+    context.Response.Headers.Append("Server", serverHeader);
+    context.Response.Headers.Append("X-Powered-By", xPoweredByHeader);
+
+    // Set CSP
+    context.Response.Headers.Append("Content-Security-Policy", 
+        "script-src 'self'; " +
+        "style-src 'self';" +
+        "img-src 'self';" +
+        "font-src 'self' https://fonts.gstatic.com;");
+    await next(context);
+});
 
 
 // Configure the HTTP request pipeline.
