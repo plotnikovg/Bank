@@ -59,6 +59,7 @@ public class AccountController : Controller
 
         //var cookies = ExtractCookiesFromResponse(response);
         var cookies = ExtractCookiesFromResponseList(response);
+        if (!cookies.Any()) return View();
         
         foreach (var item in cookies)
         {
@@ -94,7 +95,7 @@ public class AccountController : Controller
         response = await httpClient.GetAsync(httpClient.BaseAddress + "Account/CheckLogin");
         bool isLoggedIn = await response.Content.ReadFromJsonAsync<bool>();
         // string? isLoggedIn = await response.Content.ReadAsStringAsync();
-        return View();
+        return RedirectToAction("Index", "Home");
     }
     [NonAction]
     public static IDictionary<string, string> ExtractCookiesFromResponse(HttpResponseMessage response)
