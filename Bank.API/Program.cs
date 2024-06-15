@@ -117,11 +117,11 @@ app.Use(async (context, next) =>
     context.Response.Headers.Append("X-Powered-By", xPoweredByHeader);
 
     // Set CSP
-    context.Response.Headers.Append("Content-Security-Policy", 
-        "script-src 'self'; " +
-        "style-src 'self';" +
-        "img-src 'self';" +
-        "font-src 'self' https://fonts.gstatic.com;");
+    // context.Response.Headers.Append("Content-Security-Policy", 
+    //     "script-src 'self'; " +
+    //     "style-src 'self';" +
+    //     "img-src 'self';" +
+    //     "font-src 'self' https://fonts.gstatic.com;");
     await next(context);
 });
 
