@@ -5,11 +5,11 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddHttpClient();
 builder.Services.AddHttpContextAccessor();
-
+string serverHeader = "0";
 var app = builder.Build();
 app.Use(async (context, next) =>
 {
-
+    context.Response.Headers.Append("Server", serverHeader);
     // Set CSP
     context.Response.Headers.Append("Content-Security-Policy",
         "script-src 'self'; " +
