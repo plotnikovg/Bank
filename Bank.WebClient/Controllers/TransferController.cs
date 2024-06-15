@@ -27,8 +27,8 @@ public class TransferController : Controller
         return View();
     }
     [HttpPost]
-    [Route("TransferPost")]
-    public async Task<IActionResult> Transfer([FromBody] TransferPostViewModel transferPostViewModel)
+    [Route("Transfer1")]
+    public async Task<IActionResult> Transfer(TransferPostViewModel transferPostViewModel)
     {
         using HttpClient httpClient = _clientFactory.CreateClient();
         httpClient.BaseAddress = _baseAddress;
@@ -46,7 +46,9 @@ public class TransferController : Controller
         transferPostViewModel.Ip = clientIp;
         transferPostViewModel.Browser = clientBrowser;
 
+        var authorizationToken = Request.Cookies["Token"];
         var request = new HttpRequestMessage(HttpMethod.Post, _baseAddress + "Client/Transfer");
+        request.Headers.Add("Authorization", "Bearer " + authorizationToken);
         request.Content = new StringContent(JsonConvert.SerializeObject(
             transferPostViewModel), Encoding.UTF8, "application/json");
         var response = await httpClient.SendAsync(request);
