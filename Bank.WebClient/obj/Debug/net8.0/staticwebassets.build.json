@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "fL6FktD3VNHJMieJSsfrIGv+HwmizPdVIvzz8DgTml8=",
+  "Hash": "CzEK4GjdHEF4b8aqTsxOKa9A7FfIWwxNPFst4bCdPxA=",
   "Source": "Bank.WebClient",
   "BasePath": "_content/Bank.WebClient",
   "Mode": "Default",
@@ -16,6 +16,25 @@
     }
   ],
   "Assets": [
+    {
+      "Identity": "C:\\Users\\mrgri\\source\\repos\\Bank\\Bank.WebClient\\wwwroot\\css\\addClient.css",
+      "SourceId": "Bank.WebClient",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\mrgri\\source\\repos\\Bank\\Bank.WebClient\\wwwroot\\",
+      "BasePath": "_content/Bank.WebClient",
+      "RelativePath": "css/addClient.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\addClient.css"
+    },
     {
       "Identity": "C:\\Users\\mrgri\\source\\repos\\Bank\\Bank.WebClient\\wwwroot\\css\\leftContainer.css",
       "SourceId": "Bank.WebClient",

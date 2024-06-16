@@ -1,6 +1,10 @@
 {
   "Files": [
     {
+      "Id": "C:\\Users\\mrgri\\source\\repos\\Bank\\Bank.WebClient\\wwwroot\\css\\addClient.css",
+      "PackagePath": "staticwebassets\\css\\addClient.css"
+    },
+    {
       "Id": "C:\\Users\\mrgri\\source\\repos\\Bank\\Bank.WebClient\\wwwroot\\css\\leftContainer.css",
       "PackagePath": "staticwebassets\\css\\leftContainer.css"
     },
