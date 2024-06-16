@@ -5,7 +5,6 @@ using Newtonsoft.Json;
 
 namespace Bank.WebClient.Controllers;
 
-[Route("Transfer")]
 public class TransferController : Controller
 {
     private readonly IHttpClientFactory _clientFactory;
@@ -21,13 +20,11 @@ public class TransferController : Controller
     }
 
     [HttpGet]
-    [Route("Transfer")]
     public IActionResult Transfer()
     {
         return View();
     }
     [HttpPost]
-    [Route("Transfer1")]
     public async Task<IActionResult> Transfer(TransferPostViewModel transferPostViewModel)
     {
         using HttpClient httpClient = _clientFactory.CreateClient();
