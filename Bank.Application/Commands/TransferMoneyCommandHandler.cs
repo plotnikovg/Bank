@@ -19,7 +19,7 @@ public class TransferMoneyCommandHandler : IRequestHandler<TransferMoneyCommand,
     }
     public async Task<bool> Handle(TransferMoneyCommand request, CancellationToken cancellationToken)
     {
-        var senderBankAccount = _bankAccountRepository.FindByIdAsync(request.SenderBankAccountId).Result;
+        var senderBankAccount = await _bankAccountRepository.FindByIdAsync(request.SenderBankCardId);
         var moneyToTransfer = new Money(request.Currency, request.AmountToTransfer);
         var receiver = await _clientRepository.FindByPhoneNumberAsync(request.ReceiverPhoneNumber);
         if (receiver == null) throw new ArgumentNullException(nameof(receiver), "Receiver client not found");
