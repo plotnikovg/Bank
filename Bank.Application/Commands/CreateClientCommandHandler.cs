@@ -22,6 +22,7 @@ public class CreateClientCommandHandler : IRequestHandler<CreateClientCommand, b
             request.Street, request.HouseNumber, request.BuildingNumber);
         var passport = new Passport(name, request.PassportSeries, request.PassportNumber, registrationAddress);
         var client = new Client(passport, request.PhoneNumber);
+        client.UserId = request.UserId;
 
         _logger.LogInformation("Create client: {@client}", client);
 

@@ -16,6 +16,7 @@ public class CreateClientCommand : IRequest<bool>
     public int HouseNumber { get; init; } //Номер дома
     public string? BuildingNumber { get; init; } //Корпус
     public string PhoneNumber { get; init; }
+    public string UserId { get; init; }
 
     public CreateClientCommand(string firstName, string lastName, string patronymic, 
         string passportSeries, string passportNumber, int registrationDateYear, int registrationDateMonth, int registrationDateDay,
