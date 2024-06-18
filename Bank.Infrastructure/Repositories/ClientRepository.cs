@@ -50,6 +50,14 @@ public class ClientRepository : IClientRepository
         return client;
     }
 
+    public async Task<Client> FindByUserIdAsync(string userId)
+    {
+        var client = await _context.Clients
+            .Where(p => p.UserId == userId)
+            .FirstOrDefaultAsync();
+        return client;
+    }
+
     public Client AddBankAccount(Client client, BankAccount bankAccount)
     {
         client.AddBankAccount(bankAccount);
