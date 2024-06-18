@@ -5,16 +5,16 @@ namespace Bank.Application.Commands;
 /// <param name="SenderBankAccountId">Обязательный параметр</param>
 public class TransferMoneyCommand : IRequest<bool>
 {
-    public Guid SenderBankAccountId { get; init; }
+    public Guid SenderBankCardId { get; init; }
     public string Currency { get; init; }
     public decimal ReceiverBankAccountAmount { get; init; }
     public string ReceiverPhoneNumber { get; init; }
     public decimal AmountToTransfer { get; init; }
 
-    public TransferMoneyCommand(string senderBankAccountId, string currency, decimal receiverBankAccountAmount,
+    public TransferMoneyCommand(string senderBankCardId, string currency, decimal receiverBankAccountAmount,
         string receiverPhoneNumber, decimal amountToTransfer)
     {
-        SenderBankAccountId = Guid.Parse(senderBankAccountId);
+        SenderBankCardId = Guid.Parse(senderBankCardId);
         Currency = currency;
         ReceiverBankAccountAmount = receiverBankAccountAmount;
         ReceiverPhoneNumber = receiverPhoneNumber;
