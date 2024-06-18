@@ -11,5 +11,5 @@ public interface IBankAccountRepository
     Task<bool> DeleteByIdAsync(Guid id);
     Task<bool> DeleteAsync(BankAccount bankAccount);
     Task<BankAccount?> FindByIdAsync(Guid id);
-    Task<BankAccount?> FindByCardNumberIdAsync(Guid id);
+    Task<BankAccount?> FindByCardNumberIdAsync(string id);
 }

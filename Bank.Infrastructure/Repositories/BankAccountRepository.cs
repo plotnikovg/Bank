@@ -47,7 +47,9 @@ public class BankAccountRepository : IBankAccountRepository
             .FindAsync(id);
         return bankAccount;
     }
-    public async Task<BankAccount?> FindByCardNumberIdAsync(Guid id)
+    
+
+    public async Task<BankAccount?> FindByCardNumberIdAsync(string id)
     {
         var bankAccount = await _context.BankAccounts
             .Include(x => x.BankCards)
